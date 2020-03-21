@@ -6,3 +6,6 @@ alias ..="cd .."
 
 # git
 alias gst="git status"
+
+# projects
+alias dotfiles="cd ~/src/dotfiles"
