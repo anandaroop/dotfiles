@@ -32,18 +32,15 @@ brew install hokusai
 
 # geo tools
 brew install gdal
-brew cask install qgis
+brew cask install qgis # FAILED with checksum err
 
 # services
-brew install mongodb # 4.0; http://code.dblock.org/2016/06/03/very-slow-mongodb-in-development-and-test.html
 brew install redis # 5.0
 brew install memcached # 1.4
 brew install postgresql # 10.6
-brew cask install java # 9?
-brew install elasticsearch # 5.6
 
-brew services start mongodb
-brew services start postgresql
-brew services start redis
-brew services start memcached
-brew services start elasticsearch
+brew tap mongodb/brew
+brew install mongodb-community # 4.0; http://code.dblock.org/2016/06/03/very-slow-mongodb-in-development-and-test.html
+
+brew cask install homebrew/cask-versions/adoptopenjdk8
+brew install elasticsearch # 5.6
