@@ -40,3 +40,6 @@ Here is a log of my most recent setup (Mar 2020):
     - to get all Homebrew goodies
 - Install [Fira Code](https://github.com/tonsky/FiraCode)
   - Edit VS Code settings to use it w/ ligatures
+- Customize Starship
+  - Install Powerline [variant](https://github.com/powerline/**fonts**) of ~~Fira~~ Roboto for Starship
+    - Set it to terminal font with 1.0 char / 1.2 line spacing
