@@ -13,6 +13,10 @@ eval "$(starship init zsh)"
 # colorize terminal output
 export CLICOLOR=1
 
+# fix zsh alt-backspace issue by redefining WORDCHARS and
+# removing unwanted chars such as / from this list
+export WORDCHARS="*?_-.[]~=&;!#$%^(){}<>"
+
 # source dotfile aliases
 source ~/src/dotfiles/aliases.sh
 source ~/src/dotfiles/aliases-artsy.sh
