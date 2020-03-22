@@ -47,3 +47,13 @@ Here is a log of my most recent setup (Mar 2020):
     - follow post-install instructions for ssl root certs
     - `pip install hokusai`
     - then the [Artsy-specific](https://github.com/artsy/README/blob/master/playbooks/hokusai.md) `hokusai configure`
+- Install Tunnelblick and ovpn profiles
+- Journalling
+  - `brew install jrnl`
+  - `brew install jrnl-reminder`
+    - apply latest commits and tweak frequency
+  - add crontab entry for `dotfiles/bin/remind-me-to-jrnl.sh`
+  - double-check last^ two files for absolute paths everywhere
+- Pairing
+  - `yarn global add @jonallured/pear`
+  - cp ~/.pear-data from previous system
