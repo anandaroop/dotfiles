@@ -20,7 +20,7 @@ Here is a log of my most recent setup (Mar 2020):
 
 ## Dev environment
 - Customize Terminal
-  - Text > Font: 120x36 18pt Monaco
+  - Text > Font: 120x36 20pt Monaco
   - Window > Resume: No restoring text
   - Shell: Close if clean exit
   - Keyboard: Use Option as meta key
@@ -40,6 +40,10 @@ Here is a log of my most recent setup (Mar 2020):
     - to get all Homebrew goodies
 - Install [Fira Code](https://github.com/tonsky/FiraCode)
   - Edit VS Code settings to use it w/ ligatures
-- Customize Starship
-  - Install Powerline [variant](https://github.com/powerline/**fonts**) of ~~Fira~~ Roboto for Starship
-    - Set it to terminal font with 1.0 char / 1.2 line spacing
+  - Set it to Terminal font, to be used by Starship prompt
+- Install Hokusai
+  - lots of trial and error (due to CERTIFICATE_VERIFY_FAILED error) but what I _think_ worked was
+    - Install Python 2.7.17 from python.org which includes pip, openssl
+    - follow post-install instructions for ssl root certs
+    - `pip install hokusai`
+    - then the [Artsy-specific](https://github.com/artsy/README/blob/master/playbooks/hokusai.md) `hokusai configure`

@@ -4,6 +4,7 @@
 brew install starship
 
 # dev tools
+brew cask install docker
 brew install ag
 brew install awscli
 brew install bat
@@ -28,7 +29,10 @@ brew tap heroku/brew && brew install heroku
 brew tap artsy/formulas
 brew install copy_env
 brew install deploy_pr
-brew install hokusai
+
+# artsy/hokusai -- homebrew results not great :/ see readme
+# brew install pyenv pipenv
+# brew install hokusai
 
 # geo tools
 brew install gdal
