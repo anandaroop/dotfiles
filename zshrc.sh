@@ -18,5 +18,5 @@ source ~/src/dotfiles/aliases-artsy.sh
 source ~/src/dotfiles/secrets.sh
 source ~/src/dotfiles/secrets-artsy.sh
 
-# source non-committed local files
-source ~/src/dotfiles/aliases-local.sh
+# source non-committed local config
+source ~/src/dotfiles/local.sh

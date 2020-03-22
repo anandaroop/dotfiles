@@ -1,3 +1,7 @@
+# Use this file for shareable aliases only.
+#
+# Stuff specific to the local system should go in dotfiles/local.sh
+
 alias dotfiles="cd ~/src/dotfiles"
 
 # filesystem
