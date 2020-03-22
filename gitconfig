@@ -1,3 +1,15 @@
 [user]
 	name = Anandaroop Roy
 	email = anandaroop.roy+github@gmail.com
+[credential]
+	helper = osxkeychain
+[alias]
+	co = checkout
+	br = branch
+	ci = commit
+	st = status
+[core]
+	editor = code --wait
+	excludesfile = /Users/roop/.gitignore
+[format]
+	pretty = fuller
