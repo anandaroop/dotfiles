@@ -7,5 +7,14 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+# source dotfile aliases
 source ~/src/dotfiles/aliases.sh
 source ~/src/dotfiles/aliases-artsy.sh
+
+# source non-committed secrets files
+source ~/src/dotfiles/secrets.sh
+source ~/src/dotfiles/secrets-artsy.sh
+
+# source non-committed local files
+source ~/src/dotfiles/aliases-local.sh
+source ~/src/dotfiles/env-local.sh
