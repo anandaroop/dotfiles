@@ -1,0 +1,189 @@
+#! /Users/roop/.rubies/ruby-2.6.5/bin/ruby
+# encoding: utf-8
+
+require 'builder'
+require 'tempfile'
+require 'getoptlong'
+
+DEBUG = false
+
+# Abstraction of a name,lon,lat tuple.
+#
+class Location
+	attr_reader :name, :point
+	# constructor
+	def initialize(name, pt)
+		@name = name
+		@point = pt
+	end
+	# instance methods
+	def to_s
+		"#{name} @ #{point.to_s}"
+	end
+	# class methods
+	def Location.parse(str)
+		# str.chomp!
+		fields = str.split(/\t/)
+		name, lon, lat = fields[0], fields[-2], fields[-1]
+		if name.nil? or name.empty?
+			raise TypeError.new("Location name was missing.")
+		end
+		Location.new(name, Point.new(lon, lat))
+	end
+end
+
+# Abstraction of a lon,lat pair.
+#
+class Point
+	attr_reader :lon, :lat
+	# constructor
+	def initialize(x,y)
+		@lon = Point.parse_float(x)
+		@lat = Point.parse_float(y)
+	end
+	# instance methods
+	def to_s
+		"(#{lon}, #{lat})"
+	end
+	# class methods
+	def Point.parse_float(data)
+		if data.nil?
+			raise TypeError.new("Point can't parse nil into Float")
+		elsif data.is_a?(Float)
+			data
+		elsif data.is_a?(Integer)
+			data.to_f
+		elsif data.is_a?(String) and data.is_numeric?
+			data.to_f
+		else
+			raise TypeError.new("Point can't parse: #{data.inspect}. Is it numerical data?")
+		end
+	end
+end
+
+# Extension to String to support float-parsing.
+#
+class String
+	def is_numeric?
+		!self.match(/^\s*(-|\+)?((\.\d+)|(\d+\.?\d*))\s*$/).nil?
+	end
+end
+
+# KmlWriter takes a list of locations and writes them to the supplied IO as well-formed KML.
+#
+class KmlWriter
+	attr_reader :io, :locations, :doc_name
+	def initialize(io, locations, doc_name=nil)
+		@io = io
+		@locations = locations
+		@doc_name = doc_name || "ge @ #{Time.now.strftime('%T')}"
+	end
+	def write
+		xml = Builder::XmlMarkup.new(:target => @io, :indent => 2)
+		xml.instruct!
+		xml.kml(:xmlns => 'http://earth.google.com/kml/2.2') {
+			xml.Document {
+				xml.name(@doc_name)
+				@locations.each do |loc|
+					xml.Placemark {
+						xml.name(loc.name)
+						xml.description {
+							buf = String.new
+							# buf << loc.to_s
+							buf << "<table><tr><td>#{loc.name}</td><td>#{loc.point.lon}</td><td>#{loc.point.lat}</td></tr></table>"
+							buf << "<p>#{loc.name}\t#{loc.point.lon}\t#{loc.point.lat}</p>"
+							xml.cdata!(buf)
+						}
+						xml.Point {
+							xml.coordinates("#{loc.point.lon},#{loc.point.lat},0")
+						}
+					}
+				end
+			}
+		}
+	end
+end
+
+class InputReader
+	attr_reader :io, :locations, :number_locations
+	def initialize(io=$stdin, number_locations=false)
+		@io = io
+		@number_locations = number_locations
+	end
+	def parse_locations
+		@locations = []
+
+		io.each_line do |line|
+			line = if @number_locations
+				"#{io.lineno}) #{line.chomp}"
+			else
+				line.chomp
+			end
+			begin
+				# $stderr.puts line.inspect
+				@locations << Location.parse(line)
+			rescue TypeError => e
+				$stderr.puts "Skipping record #{DATA.lineno} #{line.inspect} because #{e.message}"
+			end
+		end
+	end
+end
+
+##### MAIN #####
+
+def show_usage
+	puts
+	puts "Usage: ge [--document='Document Title']"
+	puts
+	puts "Reads data from standard input in the form of tab-separated tuples, "
+	puts "where the first field is the name, and the last two fields are "
+	puts "longitude and latitude in decimal format. Results are written to"
+	puts "a /tmp file and plotted in Google Earth. "
+	puts
+	puts "-d, --document  Name of the KML Document, defaults to timestamp"
+	puts "-n, --number    Number the locations, for disambiguation"
+	puts "-h, --help      Show this help message"
+	puts
+	exit
+end
+
+opts = GetoptLong.new(
+[ '--document', '-d', GetoptLong::REQUIRED_ARGUMENT ],
+[ '--number', '-n', GetoptLong::NO_ARGUMENT ],
+[ '--help', '-h', GetoptLong::NO_ARGUMENT ]
+)
+
+document_name = nil
+number_locations = false
+
+opts.each do |opt, arg|
+	case opt
+	when '--document'
+		document_name = arg
+	when '--number'
+		number_locations = true
+	when '--help'
+		show_usage
+	end
+end
+
+reader = DEBUG ? InputReader.new(DATA, number_locations) : InputReader.new(STDIN, number_locations)
+reader.parse_locations
+
+unless reader.locations.empty?
+	out = if DEBUG
+		$stdout
+	else
+		tmp_file = "/tmp/ge-#{$$}.kml"
+		File.new(tmp_file, 'w')
+	end
+	kml = KmlWriter.new(out, reader.locations, document_name)
+	kml.write
+  puts "writing /tmp/ge-#{$$}.kml"
+  system "open -a /Applications/Google\\ Earth\\ Pro.app #{tmp_file}" unless DEBUG
+
+end
+
+__END__
+Çorum	Çorum	inhabited place	34.9500	40.5167
+Çorum	Çorum	inhabited place	28.4500	39.2333

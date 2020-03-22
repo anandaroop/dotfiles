@@ -1,0 +1,17 @@
+#! /usr/bin/perl
+
+#foreach (@ARGV) {
+while (<>) {
+	chomp;
+	$f = $_;
+	#print "$f\n";
+	($dev,$ino,$mode,$nlink,$uid,$gid,$rdev,$size,$atime,$mtime,$ctime,$blksize,$blocks) = stat($f);
+	($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst) = localtime($mtime);
+	$year += 1900;
+	$mon++; $mon = ($mon < 10) ? "0$mon": $mon;
+	$mday = ($mday < 10) ? "0$mday": $mday;
+	$hour = ($hour < 10) ? "0$hour": $hour;
+	$min = ($min < 10) ? "0$min": $min;
+	$sec = ($sec < 10) ? "0$sec": $sec;
+	print "$year-$mon-$mday $hour:$min:$sec	$f\n";
+}

@@ -1,0 +1,11 @@
+#! /usr/bin/env ruby
+
+FILES_TO_TRY = [
+  'Procfile.me',
+  'Procfile.dev',
+  'Procfile'
+].freeze
+
+procfile = FILES_TO_TRY.detect { |f| File.exist? f }
+
+system "foreman start -f #{procfile}"

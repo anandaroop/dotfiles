@@ -1,0 +1,22 @@
+#! /usr/bin/env ruby
+
+require 'date'
+require 'time'
+
+stream = STDIN
+
+counts = Hash.new(0)
+stream.each_line do |line|
+	line.chomp!
+	timestamp, path = line.split(/\t/)
+	datetime = DateTime.parse("#{timestamp} -0500")
+	adjusted = datetime.to_time - 60*60*9
+	rounded = adjusted.to_date
+	# puts "#{timestamp} == #{datetime.to_s} => #{adjusted} => #{rounded}"
+	# puts "#{timestamp} => #{rounded}"
+	counts[rounded] += 1
+end
+
+counts.each do |date, count|
+	puts "#{date} => #{'#' * count.to_i}"
+end

@@ -20,6 +20,8 @@ export WORDCHARS="*?_-.[]~=&;!#$%^(){}<>"
 # customize bat pager
 export BAT_THEME=GitHub
 
+### DOTFILES ###
+
 # source dotfile aliases
 source ~/src/dotfiles/aliases.sh
 source ~/src/dotfiles/aliases-artsy.sh
@@ -30,3 +32,6 @@ source ~/src/dotfiles/secrets-artsy.sh
 
 # source non-committed local config
 source ~/src/dotfiles/local.sh
+
+# add dotfile bin scripts to path
+export PATH=~/src/dotfiles/bin:$PATH

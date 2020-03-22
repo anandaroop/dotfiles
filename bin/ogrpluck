@@ -1,0 +1,22 @@
+#! /usr/bin/env ruby
+
+plucks = ARGV
+
+begin
+  while (line = STDIN.readline.chomp)
+    if match = line.match(/POINT \((.*) (.*)\)/)
+      x = match[1]
+      y = match[2]
+      puts "%.4f\t%.4f\n" % [x,y]
+    else
+      plucks.each do |p|
+        if match = line.match(/^\s+#{p}.*= (.*)/)
+          print match[1]
+          print "\t"
+        end
+      end
+    end
+  end
+rescue EOFError
+  #$stderr.puts "Done."
+end

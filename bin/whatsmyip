@@ -1,0 +1,4 @@
+#! /bin/bash
+
+#date
+curl -s checkip.dyn.com | sed -e 's/.*Current IP Address: //' -e 's/<.*$//'

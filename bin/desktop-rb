@@ -1,0 +1,13 @@
+#! /usr/bin/env ruby
+
+command = ARGV.first
+
+if command == "hide"
+  system "defaults write com.apple.finder CreateDesktop false"
+  system "killall Finder"
+elsif command == "show"
+  system "defaults write com.apple.finder CreateDesktop true"
+  system "killall Finder"
+else
+  puts "Unrecognized command: #{command}"
+end

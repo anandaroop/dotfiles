@@ -1,0 +1,9 @@
+#! /bin/bash
+
+echo "Node modules (╯°□°)╯︵ ┻━┻ coming right up!"
+
+set -ex
+
+rm -rf node_modules
+yarn cache clean
+yarn install

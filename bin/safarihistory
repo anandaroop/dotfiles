@@ -1,0 +1,73 @@
+#! /usr/bin/env ruby
+
+require 'CSV'
+require 'optparse'
+require 'ostruct'
+require 'uri'
+
+
+class Options
+
+  #
+  # Return a structure describing the options.
+  #
+  def self.parse(args)
+    # The options specified on the command line will be collected in *options*.
+    # We set default values here.
+    options = OpenStruct.new
+    options.limit = 100
+
+    opt_parser = OptionParser.new do |opts|
+      opts.banner = "Usage: safarihistory [options]"
+
+      opts.separator ""
+      opts.separator "Specific options:"
+
+      # Mandatory argument.
+      opts.on("-l", "--limit NUMBER",
+              "Show no more than NUMBER history items") do |num|
+        options.limit = num
+      end
+
+      # # Boolean switch.
+      # opts.on("-v", "--[no-]verbose", "Run verbosely") do |v|
+      #   options.verbose = v
+      # end
+
+      opts.separator ""
+      opts.separator "Common options:"
+
+      # No argument, shows at tail.  This will print an options summary.
+      # Try it and see!
+      opts.on_tail("-h", "--help", "Show this message") do
+        puts opts
+        exit
+      end
+
+    end
+
+    opt_parser.parse!(args)
+    options
+  end  # parse()
+
+end  # class Options
+
+options = Options.parse(ARGV)
+# pp options
+# pp ARGV
+
+# date has to be diddled into "Mac absolute time" format
+sql = %Q{select datetime(history_visits.visit_time + 978307200, 'unixepoch', 'localtime') as date, history_visits.title, history_items.url from history_visits join history_items on history_visits.history_item = history_items.id order by visit_time desc limit #{options.limit}}
+command = %Q{sqlite3 -csv $HOME/Library/Safari/History.db "#{sql}"} 
+
+idx=0
+IO.popen(command).each_line do |line|
+	idx += 1
+	date, title, url = CSV.parse(line).flatten
+	begin
+		host = URI.split(url)[2]
+	rescue URI::InvalidURIError
+		host = url[0,30]
+	end
+	puts "%4d  %s  %30s %.45s" % [idx, date, host, title]
+end

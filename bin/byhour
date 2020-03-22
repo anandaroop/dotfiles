@@ -1,0 +1,30 @@
+#! /Users/roop/.rvm/rubies/ruby-1.9.3-p545/bin/ruby
+
+require 'date'
+require 'time'
+
+stream = STDIN
+
+counts = Hash.new(0)
+stream.each_line do |line|
+	line.chomp!
+	timestamp, path = line.split(/\t/)
+	datetime = DateTime.parse("#{timestamp} -0500")
+	bucket = datetime.strftime("%Y-%m-%d %H:00").downcase
+	counts[bucket] += 1
+end
+
+counts.each do |date, count|
+	# puts "#{date} => #{'#' * count.to_i}"
+end
+
+first = counts.keys.sort.first
+last = counts.keys.sort.last
+
+first_hour = DateTime.parse("#{first} -0500").strftime("%s").to_i
+last_hour = DateTime.parse("#{last} -0500").strftime("%s").to_i
+first_hour.step(last_hour, 60*60) do |s|
+	hour = DateTime.strptime("#{s}", "%s")
+	hour_bucket = hour.strftime("%Y-%m-%d %H:00").downcase
+	puts "#{hour_bucket} #{'#' * counts[hour_bucket].to_i}"
+end

@@ -1,0 +1,36 @@
+#! /usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'time'
+require 'optparse'
+
+options = { seconds: 1 }
+OptionParser.new do |opts|
+  opts.banner = 'Usage: amend-to-now [options]'
+
+  opts.on('-sSECONDS', '--sleep=SECONDS', 'How long to sleep after committing (default: 1)') do |s|
+    options[:seconds] = s
+  end
+
+  opts.on('-h', '--help', 'Prints this help') do
+    puts opts
+    exit
+  end
+end.parse!
+
+rightnow = Time.now.rfc2822
+
+env = "GIT_COMMITTER_DATE=\"#{rightnow}\""
+git_command = "git commit --amend --no-edit --date \"#{rightnow}\""
+
+# amend
+command = "#{env} #{git_command}"
+puts command
+system command
+
+# sleep
+if options[:seconds]
+  command = "sleep #{options[:seconds]}"
+  puts command
+  system command
+end

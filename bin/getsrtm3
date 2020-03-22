@@ -1,0 +1,222 @@
+#! /usr/bin/perl
+
+# Given a continent name and a GMT-style -R flag,
+# download the appropriate STRM-3 data from the USGS server.
+#
+# Author: Anandaroop Roy (anandaroop.roy@gmail.com)
+#
+# Released to the public on 6 April 2005.
+# You are free to do with this code whatever you like, as
+# long as I am credited as the original author.
+
+
+##### CONFIG ##################################################
+
+$protocol = "http:";
+$host = "dds.cr.usgs.gov"; # NEW HOST -- as of Nov 2009
+
+%paths = (
+    "islands"       => "/srtm/version2_1/SRTM3/Islands/",
+    "eurasia"       => "/srtm/version2_1/SRTM3/Eurasia/",
+    "africa"        => "/srtm/version2_1/SRTM3/Africa/",
+    "northamerica"  => "/srtm/version2_1/SRTM3/North_America/",
+    "southamerica"  => "/srtm/version2_1/SRTM3/South_America/",
+    "australia"     => "/srtm/version2_1/SRTM3/Australia/"
+);
+$ext = ".hgt.zip";
+
+################################################################
+
+# check args & usage
+$continent = $ARGV[0];
+$region    = $ARGV[1];
+if (($#ARGV != 1) or !$paths{$continent} or !parse_region($region)) {
+    print "\nGiven a continent name and a GMT-style -R flag ";
+    print " (with integral values only for lon/lat),\n";
+    print "download the appropriate STRM-3 data from the USGS server.\n";
+    print "\nUsage: getsrtm3 { eurasia | africa | northamerica | southamerica | australia | islands } ";
+    print "-Rwest/east/south/north\n\n";
+    exit 0;
+}
+
+# MAIN
+
+# get and process the args
+$dir = $paths{$continent};
+@extent = parse_region($region);
+@tiles = extent_to_tiles(@extent);
+
+# show prelim results and confirm to proceed
+print "List of tiles to download in scanline order:\n";
+for (@tiles) {
+    print "$_\n";
+}
+print "Proceed (y/n)? ";
+
+# download or abort, per user response
+if (<STDIN> =~ /^y/i) {
+    download_tiles(@tiles);
+} else {
+    print "\nDownload cancelled.\n\n";
+    exit 0;
+}
+
+# generate grdraster.info entries & commands
+#grdraster_info(@tiles);
+
+# paste the grds together
+#paste_grds(@tiles);
+
+# show results
+#system "grdinfo final.grd";
+
+##### FUNCTIONS #####
+
+# take an -R flag and turn it into an array of w/e/s/n extents.
+sub parse_region {
+    $flag = $_[0];
+    if ($flag =~ /^-R([\d-]+)\/([\d-]+)\/([\d-]+)\/([\d-]+)$/) {
+        $west  = $1;
+        $east  = $2;
+        $south = $3;
+        $north = $4;
+        @extent = ($west, $east, $south, $north);
+        return @extent;
+    } else {
+        return 0;
+    }
+}
+
+# take an array of w/e/s/n extents and turn it into a
+# list of tile names, following SRTM-3 conventions
+sub extent_to_tiles {
+    $west  = $_[0];
+    $east  = $_[1];
+    $south = $_[2];
+    $north = $_[3];
+    @tiles = ();
+    # loop north to south, west to east (i.e. row-major or scanline order),
+    # in 1-degree increments
+    for ($lat = $north-1; $lat >= $south; $lat--) {
+        $formatted_lat = sprintf("%02d", abs $lat);
+        $formatted_lat = (($lat < 0) ? "S" : "N") . $formatted_lat;
+        for ($lon = $west; $lon <= $east-1; $lon++) {
+            $formatted_lon = sprintf("%03d", abs $lon);
+            $formatted_lon = (($lon < 0) ? "W" : "E") . $formatted_lon;
+            push(@tiles, "${formatted_lat}${formatted_lon}");
+        }
+    }
+    return @tiles;
+}
+
+# take a list of tile names and download the corresponding files from USGS
+sub download_tiles {
+    for (@_) {
+        $url = "${protocol}//${host}${dir}" . $_ . "${ext}";
+        $cmd = "curl -O $url";
+        print "$cmd\n";
+        $rc = system $cmd;
+
+        # if hgt doesn't exist, it's sea only, so write a blank file
+        if ($rc/256 == 19) {
+            print "$_ didn't exist. Writing blank file.\n";
+            write_blank_file("$_.hgt");
+        } else {
+            system "unzip -q $_${ext}";
+            system "rm $_${ext}";
+        }
+
+        # # convert the hgt to grd
+        # $rflag = tilename2rflag($_);
+        # $cmd = "xyz2grd -V $_.hgt -G$_.grd -I3c $rflag -N-32768 -ZTLhw; rm $_.hgt";
+        # system $cmd;
+    }
+}
+
+# given a path write a blank (NaN data) SRTM-3 compatible DEM file to it
+sub write_blank_file {
+    $filename = $_[0];
+
+    # convert our NaN value to a signed 2-byte int using the 's' template
+    $nan = pack( 's', -32768 );
+
+    # open a file and write 1201 x 1201 Nan's
+    open (OUT, ">$filename") or die "shit!";
+    for (1..1201*1201) {
+        print OUT $nan;
+    }
+    close OUT;
+}
+
+# take a list of tile names and turn them into grdraster.info line entries
+sub grdraster_info {
+    for (@_) {
+        # make the line entry
+        $rflag = tilename2rflag($_);
+        $num = sprintf "%03d", $n++;
+        $line = "$num   \"SRTM 3s data\"    \"m\"   $rflag  -I3c    G i 1   0   -32768  /path/to/$_.hgt";
+        $cmd = "grdraster $num $rflag -G$num.grd -V";
+
+        # print the entry and the corresponding grdraster command
+        print "grdraster.info: $line\n";
+        print "grdraster cmd : $cmd\n";
+
+    }
+}
+
+# take a tile name and convert to an -R flag
+sub tilename2rflag {
+    $_ = $_[0];
+    # parse -R from tile name
+    /([NS])(\d\d)([EW])(\d\d\d)/;
+    # bottom
+    $b = $2;
+    $b *= -1 if ($1 eq "S");
+    # top
+    $t = $b+1;
+    # left
+    $l = $4;
+    $l *= -1 if ($3 eq "W");
+    # right
+    $r = $l+1;
+
+    $rflag = sprintf "-R%+04d/%+04d/%+03d/%+03d", $l, $r, $b, $t;
+    return $rflag;
+}
+
+sub paste_grds {
+    $west  = $extent[0];
+    $east  = $extent[1];
+    $south = $extent[2];
+    $north = $extent[3];
+    # loop north to south, west to east (i.e. row-major or scanline order), in 1-degree increments
+    for ($lat = $north-1; $lat >= $south; $lat--) {
+        $formatted_lat = sprintf("%02d", abs $lat);
+        $formatted_lat = (($lat < 0) ? "S" : "N") . $formatted_lat;
+        for ($lon = $west; $lon <= $east-1; $lon++) {
+            $formatted_lon = sprintf("%03d", abs $lon);
+            $formatted_lon = (($lon < 0) ? "W" : "E") . $formatted_lon;
+            $tile = "${formatted_lat}${formatted_lon}";
+            print "$tile ";
+            if ($lon == $west) { # leftmost tile in this latitude row
+                print  "Move tile to $formatted_lat.grd\n";
+                $cmd = "mv $tile.grd $formatted_lat.grd";
+                system $cmd;
+            } else {
+                print  "Paste tile with $formatted_lat.grd output=$formatted_lat.grd\n";
+                $cmd = "grdpaste $tile.grd $formatted_lat.grd -G$formatted_lat.grd; rm $tile.grd";
+                system $cmd;
+            }
+        }
+        print "$formatted_lat.grd ";
+        if ($lat == $north-1) { # topmost latitude row
+            print  "Move row to final.grd\n";
+            $cmd = "mv $formatted_lat.grd final.grd";
+            system $cmd;
+        } else {
+            print  "Paste row with final.grd output=final.grd\n";
+            $cmd = "grdpaste $formatted_lat.grd final.grd -Gfinal.grd; rm $formatted_lat.grd";
+            system $cmd;
+        }
+    }
+}
