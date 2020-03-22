@@ -20,4 +20,3 @@ source ~/src/dotfiles/secrets-artsy.sh
 
 # source non-committed local files
 source ~/src/dotfiles/aliases-local.sh
-source ~/src/dotfiles/env-local.sh
