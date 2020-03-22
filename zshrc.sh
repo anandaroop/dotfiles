@@ -17,6 +17,9 @@ export CLICOLOR=1
 # removing unwanted chars such as / from this list
 export WORDCHARS="*?_-.[]~=&;!#$%^(){}<>"
 
+# customize bat pager
+export BAT_THEME=GitHub
+
 # source dotfile aliases
 source ~/src/dotfiles/aliases.sh
 source ~/src/dotfiles/aliases-artsy.sh
