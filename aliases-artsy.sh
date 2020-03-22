@@ -20,7 +20,7 @@ alias radiation="cd ~/src/artsy/radiation"
 alias reaction="cd ~/src/artsy/reaction && nvm use"
 alias rosalind="cd ~/src/artsy/rosalind && nvm use"
 alias vibrations="cd ~/src/artsy/vibrations"
-alias volt="cd ~/src/artsy/volt && nvm use"
+alias volt="cd ~/src/artsy/volt && nvm use 10.15.1"
 
 # journalling
 alias j="jrnl"
