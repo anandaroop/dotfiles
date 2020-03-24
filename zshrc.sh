@@ -15,7 +15,7 @@ export CLICOLOR=1
 
 # fix zsh alt-backspace issue by redefining WORDCHARS and
 # removing unwanted chars such as / from this list
-export WORDCHARS="*?_-.[]~=&;!#$%^(){}<>"
+export WORDCHARS="*?_[]~=&;!#$%^(){}<>"
 
 # customize bat pager
 export BAT_THEME=GitHub
