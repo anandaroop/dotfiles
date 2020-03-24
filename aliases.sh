@@ -26,7 +26,8 @@ alias grim="git rebase -i master"
 alias gdrb="git rebase -i --exec \"git duet-commit --amend\""
 alias grc="git rebase --continue"
 alias gra="git rebase --abort"
-alias gstale='for k in `git branch|perl -pe s/^..//`;do echo -e `git show --pretty=format:"%Cgreen%ci %Cblue%cr%Creset" $k|head -n 1`\\t$k;done|sort -r'
+alias gstale.old='for k in `git branch|perl -pe s/^..//`;do echo -e `git show --pretty=format:"%Cgreen%ci %Cblue%cr%Creset" $k|head -n 1`\\t$k;done|sort -r'
+alias gstale='git stale'
 alias grh="git reset --hard"
 alias gwho="git log --pretty=\"%Cblue%cr%Creset %Cred%an %Cgreen%s\""
 alias glog='git log --graph --pretty="%C(yellow)%h%Creset %s%C(red)%d%Creset"'

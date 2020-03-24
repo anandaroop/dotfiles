@@ -8,6 +8,7 @@
 	br = branch
 	ci = commit
 	st = status
+	stale = "branch --sort=-committerdate --color=always --format=\"%(color:#cccccc)%(committerdate)%(color:reset) %(color:red)%(committerdate:relative)%(color:reset) %(refname:short)%(if)%(upstream)%(then) [%(color:blue)%(upstream:short)]%(color:reset)%(end)\""
 [core]
 	editor = code --wait
 	excludesfile = /Users/roop/.gitignore
