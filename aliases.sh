@@ -23,15 +23,16 @@ alias gdc="git diff --cached"
 alias gcb="git checkout -b"
 alias gri="git rebase -i"
 alias grim="git rebase -i master"
-alias gdrb="git rebase -i --exec \"git duet-commit --amend\""
 alias grc="git rebase --continue"
 alias gra="git rebase --abort"
+alias grs="git reset" #soft
+alias grh="git reset --hard"
 alias gstale.old='for k in `git branch|perl -pe s/^..//`;do echo -e `git show --pretty=format:"%Cgreen%ci %Cblue%cr%Creset" $k|head -n 1`\\t$k;done|sort -r'
 alias gstale='git stale'
-alias grh="git reset --hard"
-alias gwho="git log --pretty=\"%Cblue%cr%Creset %Cred%an %Cgreen%s\""
+alias gwho="git who"
+alias gwhat='git what'
+alias gwhen='git when'
 alias glog='git log --graph --pretty="%C(yellow)%h%Creset %s%C(red)%d%Creset"'
-alias gfiles='git log --name-status --pretty="%n%Cgreen%C(bold)%s%n%Cblue%cd%Creset %C(#eeeeee)%h" --date=relative'
 
 # webdev
 alias simpleserver="python -m SimpleHTTPServer"
