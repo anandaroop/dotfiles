@@ -1,28 +1,28 @@
 [alias]
-	# When pushing to origin for the first time, just create the damn branch already! (Safe to re-run as well)
-	pushh = "! f() { CURRENT_BRANCH=$(git branch --show-current); git push --set-upstream origin ${CURRENT_BRANCH}; }; f"
+  # When pushing to origin for the first time, just create the damn branch already! (Safe to re-run as well)
+  pushh = "! f() { CURRENT_BRANCH=$(git branch --show-current); git push --set-upstream origin ${CURRENT_BRANCH}; }; f"
 
-	# How long have these branches been sitting around?
-	stale = "branch --sort=-committerdate --format=\"%(color:#cccccc)%(committerdate:iso)%(color:reset) %(color:red)%(committerdate:relative)%(color:reset) %(color:green)%(refname:short)%(if)%(upstream)%(then) [%(color:blue)%(upstream:short)]%(color:reset)%(end)\""
+  # How long have these branches been sitting around?
+  stale = "branch --sort=-committerdate --format=\"%(color:#cccccc)%(committerdate:iso)%(color:reset) %(color:red)%(committerdate:relative)%(color:reset) %(color:green)%(refname:short)%(if)%(upstream)%(then) [%(color:blue)%(upstream:short)]%(color:reset)%(end)\""
 
-	# What files have been touched recently? (Can take a path)
-	what = "log --name-status --pretty=\"%n%C(green)%C(bold)%s%n%C(blue)%cd%C(reset) %C(#eeeeee)%h\" --date=relative"
+  # What files have been touched recently? (Can take a path)
+  what = "log --name-status --pretty=\"%n%C(green)%C(bold)%s%n%C(blue)%cd%C(reset) %C(#eeeeee)%h\" --date=relative"
 
-	# Who's been up in these files? (Can take a path)
-	who = "log --pretty=\"%C(blue)%cr%C(reset) %C(red)%C(bold)%an %C(reset)%C(green)%s\""
+  # Who's been up in these files? (Can take a path)
+  who = "log --pretty=\"%C(blue)%cr%C(reset) %C(red)%C(bold)%an %C(reset)%C(green)%s\""
 
-	# When did some commit go out to staging? to production? (Takes a sha)
-	when = "! f() { for e in staging production; do git tag --list "$e-*" --contains $1 | sort | head -1; done }; f"
+  # When did some commit go out to staging? to production? (Takes a sha)
+  when = "! f() { for e in staging production; do git tag --list "$e-*" --contains $1 | sort | head -1; done }; f"
 
-	# BORKED: What's ready to go out to prod?
-	# deployable = "! f() { for remote in artsy upstream; do git fetch "$remote" 2> /dev/null; done; git log --date=format:\"%m/%d %H:%M\" --pretty=format:\"%C(yellow)%cd %C(blue)%h %C(red)%an %C(reset)%s\" staging...production; }; f"
+  # BORKED: What's ready to go out to prod?
+  # deployable = "! f() { for remote in artsy upstream; do git fetch "$remote" 2> /dev/null; done; git log --date=format:\"%m/%d %H:%M\" --pretty=format:\"%C(yellow)%cd %C(blue)%h %C(red)%an %C(reset)%s\" staging...production; }; f"
 [user]
-	name = Anandaroop Roy
-	email = anandaroop.roy+github@gmail.com
+  name = Anandaroop Roy
+  email = anandaroop.roy+github@gmail.com
 [credential]
-	helper = osxkeychain
+  helper = osxkeychain
 [core]
-	editor = code --wait
-	excludesfile = /Users/roop/.gitignore
+  editor = code --wait
+  excludesfile = /Users/roop/.gitignore
 [format]
-	pretty = fuller
+  pretty = fuller
