@@ -32,3 +32,8 @@ alias jopen="jq '.journals.default'< ~/.jrnl_config | xargs code"
 alias jtags="jrnl --tags"
 alias jtil="jrnl @til"
 alias jr="jrnl-reminder"
+
+# tunnelblick
+function tunnelblick () { osascript -e "tell application \"/Applications/Tunnelblick.app\"" -e "${1} \"artsy-${2}\"" -e "end tell"; }
+alias tbs="tunnelblick disconnect production && sleep 2; tunnelblick connect staging && sleep 5"
+alias tbp="tunnelblick disconnect staging && sleep 2; tunnelblick connect production && sleep 5"
