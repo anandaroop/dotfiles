@@ -2,7 +2,7 @@
 #
 # Stuff specific to the local system should go in dotfiles/local.sh
 
-alias dotfiles="cd ~/src/dotfiles"
+alias dotfiles="cd ~/src/dotfiles && code ."
 
 # filesystem
 alias ..="cd .."
