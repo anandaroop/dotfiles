@@ -1,0 +1,26 @@
+#! /bin/bash
+
+usage () {
+  echo "Usage: tunnelblick [connect|disconnect] [<environment name>|all]"
+  echo ""
+  echo "Examples:"
+  echo "  tunnelblick connect artsy-staging"
+  echo "  tunnelblick connect artsy-production"
+  echo "  tunnelblick disconnect all"
+}
+
+if [ $# -ne 2 ]; then
+  usage
+  exit 1
+fi
+
+if [ "$1" != "connect" ] && [ "$1" != "disconnect" ]; then
+  usage
+  exit 1
+fi
+
+if [ "$2" == "all" ]; then
+  osascript -e "tell application \"/Applications/Tunnelblick.app\"" -e "${1} all" -e "end tell"
+else
+  osascript -e "tell application \"/Applications/Tunnelblick.app\"" -e "${1} \"${2}\"" -e "end tell"
+fi

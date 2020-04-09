@@ -34,6 +34,6 @@ alias jtil="jrnl @til"
 alias jr="jrnl-reminder"
 
 # tunnelblick
-function tunnelblick () { osascript -e "tell application \"/Applications/Tunnelblick.app\"" -e "${1} \"artsy-${2}\"" -e "end tell"; }
-alias tbs="tunnelblick disconnect production && sleep 2; tunnelblick connect staging && sleep 5"
-alias tbp="tunnelblick disconnect staging && sleep 2; tunnelblick connect production && sleep 5"
+alias tbs="tunnelblick disconnect artsy-production && sleep 2; tunnelblick connect artsy-staging && sleep 5"
+alias tbp="tunnelblick disconnect artsy-staging && sleep 2; tunnelblick connect artsy-production && sleep 5"
+alias tbd="tunnelblick disconnect all"
