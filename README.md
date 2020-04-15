@@ -57,3 +57,5 @@ Here is a log of my most recent setup (Mar 2020):
 - Pairing
   - `yarn global add @jonallured/pear`
   - cp ~/.pear-data from previous system
+- Insomnia
+  - `brew cask install insomnia`
