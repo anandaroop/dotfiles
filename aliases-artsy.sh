@@ -1,8 +1,16 @@
 # see aliases.sh for ruby/js workflow stuff
 
-# projects
+# hokusai
+alias hse="hokusai staging env get"
+alias hpe="hokusai production env get"
+alias hsr="hokusai staging run --tty --verbose"
+alias hpr="hokusai production run --tty --verbose"
 alias hsc="hokusai staging run 'bundle exec rails c' --tty --verbose"
 alias hpc="hokusai production run 'bundle exec rails c' --tty --verbose"
+alias hsdb="hokusai staging run 'bundle exec rails dbconsole' --tty --verbose"
+alias hpdb="hokusai production run 'bundle exec rails dbconsole' --tty --verbose"
+
+# projects
 alias gravity="cd ~/src/artsy/gravity"  # && nvm use 0.10
 alias sc="gravity && hsc"
 alias pc="gravity && hpc"
