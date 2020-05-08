@@ -42,6 +42,7 @@ alias ss="simpleserver"
 alias bex="bundle exec"
 alias bgu="bundle exec guard"
 alias rfebgu="RSPEC_FOCUS_ENABLED=1 bundle exec guard"
+alias frbe="foreman run bundle exec"
 
 # javascript
 alias yrs="yarn run storybook"
