@@ -50,10 +50,16 @@ Here is a log of my most recent setup (Mar 2020):
 - Install Tunnelblick and ovpn profiles
 - Journalling
   - `brew install jrnl`
-  - `brew install jrnl-reminder`
-    - apply latest commits and tweak frequency
-  - add crontab entry for `dotfiles/bin/remind-me-to-jrnl.sh`
-  - double-check last^ two files for absolute paths everywhere
+  - ~~`brew install jrnl-reminder`~~
+    - ~~apply latest commits and tweak frequency~~
+  - better to just
+    - clone my fork of `jrnl-reminder`
+    - update `dotfiles/bin/remind-me-to-jrnl.sh` to use that executable
+    - add crontab entry for `dotfiles/bin/remind-me-to-jrnl.sh`, e.g.:
+      ```
+      */15 10-18  *    *   1-5  /path/to/dotfiles/bin/remind-me-to-jrnl.sh >> /tmp/cronlog 2>&1
+      ```
+  - double-check files for absolute paths everywhere
 - Pairing
   - `yarn global add @jonallured/pear`
   - cp ~/.pear-data from previous system
