@@ -25,6 +25,7 @@ alias gri="git rebase -i"
 alias grim="git rebase -i master"
 alias grc="git rebase --continue"
 alias gra="git rebase --abort"
+alias gcane="git commit --amend --no-edit"
 alias grs="git reset" #soft
 alias grh="git reset --hard"
 alias gstale.old='for k in `git branch|perl -pe s/^..//`;do echo -e `git show --pretty=format:"%Cgreen%ci %Cblue%cr%Creset" $k|head -n 1`\\t$k;done|sort -r'
