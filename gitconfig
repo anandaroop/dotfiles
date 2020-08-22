@@ -16,6 +16,9 @@
 
   # BORKED: What's ready to go out to prod?
   # deployable = "! f() { for remote in artsy upstream; do git fetch "$remote" 2> /dev/null; done; git log --date=format:\"%m/%d %H:%M\" --pretty=format:\"%C(yellow)%cd %C(blue)%h %C(red)%an %C(reset)%s\" staging...production; }; f"
+
+  # Check out the other most recently committed branch
+  pop = "! f() { git checkout $(branchpop); }; f"
 [user]
   name = Anandaroop Roy
   email = anandaroop.roy+github@gmail.com

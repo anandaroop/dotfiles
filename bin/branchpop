@@ -1,0 +1,14 @@
+#! /usr/bin/env ruby
+
+current_branch_name = `git branch --show-current`.chomp
+
+recent_branches = `git branch --sort="-committerdate"`.
+                  split(/\n/).
+                  map{ |s| s[2..-1] }.
+                  take(2)
+
+current_branch_idx = recent_branches.index(current_branch_name)
+other_branch_idx = 1 - current_branch_idx
+other_branch_name = recent_branches[other_branch_idx]
+
+puts other_branch_name
