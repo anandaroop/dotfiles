@@ -28,7 +28,7 @@ alias radiation="cd ~/src/artsy/radiation"
 alias reaction="cd ~/src/artsy/reaction && nvm use"
 alias rosalind="cd ~/src/artsy/rosalind && nvm use"
 alias vibrations="cd ~/src/artsy/vibrations"
-alias volt="cd ~/src/artsy/volt && nvm use 10.15.1"
+alias volt="cd ~/src/artsy/volt && nvm use 12"
 alias vortex="cd ~/src/artsy/vortex"
 alias eigen="cd ~/src/artsy/eigen"
 
