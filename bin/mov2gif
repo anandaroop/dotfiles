@@ -1,0 +1,31 @@
+#! /bin/bash
+
+usage () {
+  echo "Usage: mov2gif path/to/file.mov"
+  echo ""
+  echo "Example:"
+  echo "  mov2gif ~/Desktop/screencap.mov"
+}
+
+if [ $# -ne 1 ]; then
+  usage
+  exit 1
+fi
+
+if [ ! -f "$1" ]; then
+  echo "Source file does not exist!"
+  exit 1
+fi
+
+DESTINATION_FILE=`echo $1 | sed 's/.mov$/.gif/'`
+
+if [ -f $DESTINATION_FILE ]; then
+  echo "Destination file exists!"
+  exit 1
+fi
+
+# normal quality
+ffmpeg -i "$1" -filter_complex "[0:v] fps=5,split [a][b];[a] palettegen=max_colors=128 [p];[b][p] paletteuse" ${DESTINATION_FILE}.5.128.gif
+
+# better quality
+# ffmpeg -i "$1" -filter_complex "[0:v] fps=10,split [a][b];[a] palettegen=max_colors=256 [p];[b][p] paletteuse" ${DESTINATION_FILE}.10.256.gif
