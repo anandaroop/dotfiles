@@ -65,3 +65,5 @@ Here is a log of my most recent setup (Mar 2020):
   - cp ~/.pear-data from previous system
 - Insomnia
   - `brew cask install insomnia`
+- Install [PageExtender](https://github.com/fphilipe/PageExtender.app) from Mac App Store
+  - Configure it to look for css & js in ./page-extender
