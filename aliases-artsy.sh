@@ -44,6 +44,8 @@ alias jopen="jq '.journals.default'< ~/.jrnl_config | xargs code"
 alias jtags="jrnl --tags"
 alias jtil="jrnl @til"
 alias jr="jrnl-reminder"
+jag () { ag $@ "/Users/roop/Dropbox (Personal)/Artsy/artsy-journal.jrnl.txt" }
+alias jsearch="jag"
 
 # tunnelblick
 alias tbs="tunnelblick disconnect artsy-production && sleep 2; tunnelblick connect artsy-staging && sleep 5"
