@@ -26,6 +26,7 @@ alias grm="git rebase main 2> /dev/null || git rebase master 2> /dev/null; git b
 alias grim="(git branch --list | grep main) && gri main; (git branch --list | grep master) && gri master; git branch --show-current"
 alias grc="git rebase --continue"
 alias gra="git rebase --abort"
+alias gca="git commit --amend"
 alias gcane="git commit --amend --no-edit"
 alias grs="git reset" #soft
 alias grh="git reset --hard"
@@ -35,6 +36,7 @@ alias gwho="git who"
 alias gwhat='git what'
 alias gwhen='git when'
 alias glog='git log --graph --pretty="%C(yellow)%h%Creset %s%C(red)%d%Creset"'
+alias gmerges='git log --merges --invert-grep --grep="Update metaphysics schema" --pretty="%h %C(blue)%ci %C(red)%s"'
 
 # webdev
 alias simpleserver="python -m SimpleHTTPServer"
