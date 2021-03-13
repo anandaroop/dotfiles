@@ -7,7 +7,7 @@ recent_branches = `git branch --sort="-committerdate"`.
                   map{ |s| s[2..-1] }.
                   take(2)
 
-current_branch_idx = recent_branches.index(current_branch_name)
+current_branch_idx = recent_branches.index(current_branch_name) || 1
 other_branch_idx = 1 - current_branch_idx
 other_branch_name = recent_branches[other_branch_idx]
 
