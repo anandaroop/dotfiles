@@ -55,3 +55,4 @@ alias yarnlinks="find node_modules -maxdepth 2 -type l | grep -v -E '\.bin'"
 # misc
 alias beep="osascript -e 'beep 3'"
 alias saydone="osascript -e 'say \"done\"'"
+alias repairmongo="mongod --repair --dbpath /usr/local/var/mongodb"
