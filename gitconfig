@@ -2,6 +2,9 @@
   # When pushing to origin for the first time, just create the damn branch already! (Safe to re-run as well)
   pushh = "! f() { CURRENT_BRANCH=$(git branch --show-current); git push --set-upstream origin ${CURRENT_BRANCH}; }; f"
 
+  # When pushing to artsy for the first time, just create the damn branch already! (Safe to re-run as well)
+  pusha = "! f() { CURRENT_BRANCH=$(git branch --show-current); git push --set-upstream artsy ${CURRENT_BRANCH}; }; f"
+
   # How long have these branches been sitting around?
   stale = "branch --sort=-committerdate --format=\"%(color:#cccccc)%(committerdate:iso)%(color:reset) %(color:red)%(committerdate:relative)%(color:reset) %(color:green)%(refname:short)%(if)%(upstream)%(then) [%(color:blue)%(upstream:short)]%(color:reset)%(end)\""
 
