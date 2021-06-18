@@ -6,8 +6,7 @@ Here is a log of my most recent setup (Mar 2020):
 
 ## Basic apps
 - Install Dropbox
-  - Add personal and work accounts
-  - Turn on SmartSync at the root of work account
+  - Add personal account only
 - Install 1Password
   - Choose Dropbox sync to enable the Primary vault, sync'd from .opvault in local Dropbox folder
   - Add Artsy team from 1Password > Account
