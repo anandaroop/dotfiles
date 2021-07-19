@@ -11,24 +11,24 @@ SEARCH_URI = "http://www.geonames.org/search.html?q="
 COLUMNS_PER_RESULT_ROW = 6
 
 feature_classes = {
-	'A' => 'Administrative', 
-	'P' => 'Populated place', 
-	'H' => 'Hydrographic', 
-	'T' => 'Hypsographic', 
-	'V' => 'Vegetation', 
-	'L' => 'Locality or area', 
-	'S' => 'Spot feature', 
-	'R' => 'Road & rails', 
+	'A' => 'Administrative',
+	'P' => 'Populated place',
+	'H' => 'Hydrographic',
+	'T' => 'Hypsographic',
+	'V' => 'Vegetation',
+	'L' => 'Locality or area',
+	'S' => 'Spot feature',
+	'R' => 'Road & rails',
 	'U' => 'Undersea ',
 }
 
 continents = {
-	'EU' => 'Europe', 
-	'AF' => 'Africa', 
-	'AS' => 'Asia', 
-	'OC' => 'Oceania', 
-	'NA' => 'N. America', 
-	'SA' => 'S. America', 
+	'EU' => 'Europe',
+	'AF' => 'Africa',
+	'AS' => 'Asia',
+	'OC' => 'Oceania',
+	'NA' => 'N. America',
+	'SA' => 'S. America',
 }
 
 countries = {
@@ -316,39 +316,39 @@ optparse = OptionParser.new do |opts|
   end
 
 	# FEATURE CLASS
-	
+
   options[:feature] = nil
-  opts.on( '--feature <code>', 
-																'Choose feature class', 
-																'  A = Administrative (country, state, region,...)  ', 
-																'  P = Populated place (city, village,...)', 
-																'  H = Hydrographic (stream, lake,...)', 
-																'  T = Hypsographic (mountain,hill,rock,...)', 
-																'  V = Vegetation (forest,heath,..)', 
-																'  L = Locality or area (parks,area, ...)', 
-																'  S = Spot feature (spot, building, farm)', 
-																'  R = Road & rails (road, street, highway, railroad )', 
-																'  U = Undersea', 
+  opts.on( '--feature <code>',
+																'Choose feature class',
+																'  A = Administrative (country, state, region,...)  ',
+																'  P = Populated place (city, village,...)',
+																'  H = Hydrographic (stream, lake,...)',
+																'  T = Hypsographic (mountain,hill,rock,...)',
+																'  V = Vegetation (forest,heath,..)',
+																'  L = Locality or area (parks,area, ...)',
+																'  S = Spot feature (spot, building, farm)',
+																'  R = Road & rails (road, street, highway, railroad )',
+																'  U = Undersea',
   ) do |feature|
     options[:feature] = feature
   end
-	
+
 	# CONTINENT
-	
+
   options[:continent] = nil
-  opts.on( '-n', '--continent <code>',	continents.keys, 'Choose continent', 
-															'  EU = Europe', 
-															'  AF = Africa', 
-															'  AS = Asia', 
-															'  OC = Oceania', 
-															'  NA = N. America', 
+  opts.on( '-n', '--continent <code>',	continents.keys, 'Choose continent',
+															'  EU = Europe',
+															'  AF = Africa',
+															'  AS = Asia',
+															'  OC = Oceania',
+															'  NA = N. America',
 															'  SA = S. America',
 	) do |continent|
     options[:continent] = continent
   end
 
 	# COUNTRY
-	
+
   options[:country] = nil
   opts.on( '-c', '--country <code>',	'Choose country (see --list-countries for full list)', countries.keys
 	) do |country|
@@ -390,7 +390,7 @@ puts "Restricting to continent: #{countries[options[:country]]}" if options[:cou
 puts "Restricting to country: #{continents[options[:continent]]}" if options[:continent] and options[:verbose]
 
 def gn_lookup(toponym, options)
-	uri = "#{SEARCH_URI}#{URI.escape(toponym)}"
+	uri = "#{SEARCH_URI}#{URI.encode_www_form_component(toponym)}"
 	if options[:country]
 		uri << "&country=#{options[:country]}"
 	end
@@ -402,20 +402,20 @@ def gn_lookup(toponym, options)
 	end
 	puts uri if options[:verbose]
 
-	doc = Nokogiri::HTML(open(uri), nil, 'UTF-8')
+	doc = Nokogiri::HTML(URI.open(uri), nil, 'UTF-8')
 	# puts doc.inspect
 
 	# if we have a result set
 	if doc.css('table.restable').size > 0
 
 		# remove hit count
-		doc.css('table.restable tr').first.unlink 
+		doc.css('table.restable tr').first.unlink
 
 		# remove column headers
-		doc.css('table.restable tr').first.unlink 
+		doc.css('table.restable tr').first.unlink
 
 		# loop over remaining rows
-		doc.css('table.restable tr').each_with_index do |tr, i| 
+		doc.css('table.restable tr').each_with_index do |tr, i|
 			if tr.children.size == COLUMNS_PER_RESULT_ROW
 				next if i > options[:max]
 				name 		= tr.css('td')[1].css('a')[0].content
@@ -451,7 +451,7 @@ elsif defined?(DATA) and !DATA.eof?
 		line.chomp!
 		gn_lookup(line, options)
 	end
-else 
+else
 	# via standard input, either interactively or a pipe
 	STDIN.each_line do |line|
 		line.chomp!
