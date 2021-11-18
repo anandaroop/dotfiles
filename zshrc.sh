@@ -44,3 +44,10 @@ source ~/src/dotfiles/local.sh
 
 # add dotfile bin scripts to path
 export PATH=~/src/dotfiles/bin:~/bin:$PATH
+
+# android dev
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
