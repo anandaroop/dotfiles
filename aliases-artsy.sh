@@ -35,7 +35,7 @@ alias rosalind="cd ~/src/artsy/rosalind && nvm use"
 alias vibrations="cd ~/src/artsy/vibrations"
 alias volt="cd ~/src/artsy/volt && nvm use 12"
 alias vortex="cd ~/src/artsy/vortex"
-alias eigen="cd ~/src/artsy/eigen"
+alias eigen="cd ~/src/artsy/eigen && nvm use 14"
 
 # journalling
 alias j="jrnl"
