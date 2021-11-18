@@ -4,8 +4,8 @@ require 'json'
 
 defaults =   {
   "bounds" => "120 30 135 45", # xmin ymin xmax ymax
-  # "dataset" => "50m", # zoomed MID,
   # "dataset" => "110m", # zoomed OUT,
+  # "dataset" => "50m", # zoomed MID,
   "dataset" => "10m", # zoomed IN,
   "layers" => %w(land admin_0_boundary_lines_land)
 }
@@ -30,8 +30,8 @@ if !File.exist? 'ogrnerc.json'
         "admin_0_countries",
         "admin_0_boundary_lines_disputed_areas",
         "admin_0_boundary_lines_land"
-        // "admin_1_states_provinces_lines_shp"
-        // "admin_1_states_provinces_shp",
+        // "admin_1_states_provinces_lines"
+        // "admin_1_states_provinces",
         // "populated_places_simple"
       ]
     }
@@ -58,12 +58,12 @@ types = {
   "admin_0_boundary_lines_disputed_areas" => "cultural",
   "admin_0_boundary_lines_land" => "cultural",
   "admin_0_map_units" => "cultural",
-  "admin_1_states_provinces_lines_shp" => "cultural",
-  "admin_1_states_provinces_shp" => "cultural",
+  "admin_1_states_provinces_lines" => "cultural",
+  "admin_1_states_provinces" => "cultural",
   "populated_places_simple" => "cultural"
 }
 
-rootdir = "/Geodata/ne"
+rootdir = "/Users/Shared/Geodata/ne"
 
 puts settings.inspect
 output_dir = "ne-#{settings["dataset"]}-" << settings["bounds"].gsub(/[^\w]/, '-')
