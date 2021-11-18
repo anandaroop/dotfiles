@@ -67,3 +67,8 @@ Here is a log of my most recent setup (Mar 2020):
   - `brew cask install insomnia`
 - Install [PageExtender](https://github.com/fphilipe/PageExtender.app) from Mac App Store
   - Configure it to look for css & js in ./page-extender
+- Python
+  - Following https://opensource.com/article/19/5/python-3-default-mac
+  - `brew install pyenv` (if not already installed)
+  - `pyenv install 3.7.3` (e.g.)
+  - `pyenv global 3.7.3` (e.g.)
