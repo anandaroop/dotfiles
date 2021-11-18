@@ -6,8 +6,7 @@ Here is a log of my most recent setup (Mar 2020):
 
 ## Basic apps
 - Install Dropbox
-  - Add personal and work accounts
-  - Turn on SmartSync at the root of work account
+  - Add personal account only
 - Install 1Password
   - Choose Dropbox sync to enable the Primary vault, sync'd from .opvault in local Dropbox folder
   - Add Artsy team from 1Password > Account
@@ -29,18 +28,23 @@ Here is a log of my most recent setup (Mar 2020):
   - Prefer [developer.apple.com](https://developer.apple.com/download/more/) over App Store
 - Install VS Code
   - Install `code` shell command from within app
-- Install NVM via install script
-- Install Homebrew via install script
 - Set up [Github ssh access](https://help.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh) with new keypair
-  - and copy work keypair
-- Install anandaroop/dotfiles
-  - run script/setup.sh
-    - to link to shared .zshrc and .gitconfig
-  - run or refer to script/brew.sh
-    - to get all Homebrew goodies
+  - and copy work keypair from 1password
 - Install [Fira Code](https://github.com/tonsky/FiraCode)
   - Edit VS Code settings to use it w/ ligatures
   - Set it to Terminal font, to be used by Starship prompt
+- Install anandaroop/dotfiles
+  - run script/setup.sh
+    - to link to shared .zshrc and .gitconfig
+    - on term init, will complain about some as-yet uninstalled things e.g. chruby
+- Install Homebrew via install script
+  - run or refer to script/brew.sh
+    - to get all Homebrew goodies
+    - incl chruby, Starship prompt and many others
+- Install NVM via install script
+
+## GOT THIS FAR
+
 - Install Hokusai
   - lots of trial and error (due to CERTIFICATE_VERIFY_FAILED error) but what I _think_ worked was
     - Install Python 2.7.17 from python.org which includes pip, openssl

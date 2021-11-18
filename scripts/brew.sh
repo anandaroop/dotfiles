@@ -27,7 +27,7 @@ brew tap heroku/brew && brew install heroku
 # artsy
 brew tap artsy/formulas
 brew install copy_env
-brew install deploy_pr
+#brew install deploy_pr
 
 # artsy/hokusai -- homebrew results not great :/ see readme
 # brew install pyenv pipenv
@@ -45,5 +45,5 @@ brew install postgresql # 10.6
 brew tap mongodb/brew
 brew install mongodb-community # 4.0; http://code.dblock.org/2016/06/03/very-slow-mongodb-in-development-and-test.html
 
-brew cask install homebrew/cask-versions/adoptopenjdk8
-brew install elasticsearch # 5.6
+brew install homebrew/cask-versions/adoptopenjdk8
+brew install elasticsearch@5.6 # 5.6
