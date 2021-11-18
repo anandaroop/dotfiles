@@ -26,6 +26,9 @@ export WORDCHARS="*?_[]~&;!#$%^"
 # customize bat pager
 export BAT_THEME=GitHub
 
+# allow #-comments in shell
+setopt interactivecomments
+
 ### DOTFILES ###
 
 # source dotfile aliases
@@ -40,4 +43,4 @@ source ~/src/dotfiles/secrets-artsy.sh
 source ~/src/dotfiles/local.sh
 
 # add dotfile bin scripts to path
-export PATH=~/src/dotfiles/bin:$PATH
+export PATH=~/src/dotfiles/bin:~/bin:$PATH
