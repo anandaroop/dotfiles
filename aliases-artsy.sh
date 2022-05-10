@@ -41,6 +41,7 @@ alias vibrations="cd ~/src/artsy/vibrations"
 alias volt="cd ~/src/artsy/volt && nvm use"
 alias vortex="cd ~/src/artsy/vortex"
 alias eigen="cd ~/src/artsy/eigen && nvm use"
+alias forque="cd ~/src/artsy/forque && nvm use"
 
 # journalling
 alias j="jrnl"
