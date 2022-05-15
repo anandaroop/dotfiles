@@ -16,7 +16,6 @@ brew install imagemagick
 brew install jq
 brew install jrnl
 brew install ruby-install
-brew install the_silver_searcher
 brew install tidy-html5
 brew install tree
 brew install watchman
