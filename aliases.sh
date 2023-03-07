@@ -35,7 +35,7 @@ alias gstale='git stale'
 alias gwho="git who"
 alias gwhat='git what'
 alias gwhen='git when'
-alias glog='git log --graph --pretty="%C(yellow)%h%Creset %s%C(red)%d%Creset"'
+alias glog='git log --graph --pretty="%C(yellow)%h%Creset %C(red)%cd %Creset%s %C(blue)%d%Creset" --date=relative'
 alias gmerges='git log --merges --invert-grep --grep="Update metaphysics schema" --pretty="%h %C(blue)%ci %C(red)%s"'
 
 # webdev
