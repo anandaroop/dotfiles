@@ -57,6 +57,7 @@ alias jtil="jrnl @til"
 alias jr="jrnl-reminder"
 jag () { ag $@ "/Users/roop/Dropbox (Personal)/Artsy/artsy-journal.jrnl.txt" }
 alias jsearch="jag"
+tfind () { yarn translations | grep "$@" | cut -f 1 -d\ | xargs -I path ag path src }
 
 # tunnelblick
 alias tbs="tunnelblick disconnect artsy-production && sleep 2; tunnelblick connect artsy-staging && sleep 5"
