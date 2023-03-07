@@ -14,6 +14,12 @@
   # Who's been up in these files? (Can take a path)
   who = "log --follow --pretty=\"%C(blue)%cr%C(reset) %C(red)%C(bold)%an %C(reset)%C(green)%s\""
 
+  # What change added or removed a given search string?
+  changed = "! f() { git log -S $1 --pretty=\"%h %Cred%ar %Cblue%aN %Cgreen%s\"; }; f"
+
+  # Who made a change that added or removed a given search string?
+  whochanged = "! f() { git log -S $1 --name-status --pretty=\"%n %C(yellow)%h %C(green)%an %C(red)%cd %C(blue)%s%Creset\" --date=relative; }; f"
+
   # When did some commit go out to staging? to production? (Takes a sha)
   when = "! f() { for e in staging production; do git tag --list "$e-*" --contains $1 | sort | head -1; done }; f"
 
