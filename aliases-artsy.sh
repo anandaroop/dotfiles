@@ -14,6 +14,7 @@ alias hsc="hokusai staging run 'bundle exec rails c' --tty --verbose"
 alias hpc="hokusai production run 'bundle exec rails c' --tty --verbose"
 alias hsdb="hokusai staging run 'bundle exec rails dbconsole' --tty --verbose"
 alias hpdb="hokusai production run 'bundle exec rails dbconsole' --tty --verbose"
+alias dd2sha="! f() { hokusai registry images --limit 20 --digests --filter-tags prod | grep \$1 | cut -d \| -f 3 | cut -c2-41 }; f"
 
 # projects
 alias gravity="cd ~/src/artsy/gravity"  # && nvm use 0.10
