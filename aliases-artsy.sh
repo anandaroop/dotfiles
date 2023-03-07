@@ -62,3 +62,6 @@ alias jsearch="jag"
 alias tbs="tunnelblick disconnect artsy-production && sleep 2; tunnelblick connect artsy-staging && sleep 5"
 alias tbp="tunnelblick disconnect artsy-staging && sleep 2; tunnelblick connect artsy-production && sleep 5"
 alias tbd="tunnelblick disconnect all"
+
+# integrity
+alias fxe2e="cd ~/src/artsy/integrity && git pull artsy main && yarn cypress run --spec \"cypress/e2e/find_and_explore/*\""
