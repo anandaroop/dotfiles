@@ -29,3 +29,10 @@ ffmpeg -i "$1" -filter_complex "[0:v] fps=5,split [a][b];[a] palettegen=max_colo
 
 # better quality
 # ffmpeg -i "$1" -filter_complex "[0:v] fps=10,split [a][b];[a] palettegen=max_colors=256 [p];[b][p] paletteuse" ${DESTINATION_FILE}.10.256.gif
+
+# normal quality, lower fps
+# ffmpeg -i "$1" -filter_complex "[0:v] fps=3,split [a][b];[a] palettegen=max_colors=128 [p];[b][p] paletteuse" ${DESTINATION_FILE}.3.128.gif
+
+# normal quality, resized, lower fps
+# ffmpeg -i "$1" -vf scale=1500:1473 /Users/roop/Desktop/tmp.mov2gif.resized.gif
+# ffmpeg -i /Users/roop/Desktop/tmp.mov2gif.resized.gif -filter_complex "[0:v] fps=3,split [a][b];[a] palettegen=max_colors=128 [p];[b][p] paletteuse" ${DESTINATION_FILE}.5.128.gif
