@@ -1,9 +1,8 @@
 # see aliases.sh for ruby/js workflow stuff
 
 # k8s
-# alias k8s-token="aws-iam-authenticator token -i $(kubectl config get-clusters | grep kubernetes-production) -r arn:aws:iam::585031190124:role/KubernetesDev | jq -r '.status.token'"
-alias k8s="aws-iam-authenticator token -i $(kubectl config get-clusters | grep kubernetes-staging) -r arn:aws:iam::585031190124:role/KubernetesDev | jq -r .status.token | pbcopy && echo \"copied to clipboard\""
-alias k8p="aws-iam-authenticator token -i $(kubectl config get-clusters | grep kubernetes-production) -r arn:aws:iam::585031190124:role/KubernetesDev | jq -r .status.token | pbcopy && echo \"copied to clipboard\""
+alias k8s="aws-iam-authenticator token -i $(kubectl config get-contexts staging --no-headers=true | sed 's/^.*kube/kube/' | awk '{print $1}') -r arn:aws:iam::585031190124:role/KubernetesDev | jq -r .status.token | pbcopy"
+alias k8p="aws-iam-authenticator token -i $(kubectl config get-contexts production --no-headers=true | sed 's/^.*kube/kube/' | awk '{print $1}') -r arn:aws:iam::585031190124:role/KubernetesDev | jq -r .status.token | pbcopy"
 
 # hokusai
 alias hse="hokusai staging env get"
