@@ -5,6 +5,9 @@
   # When pushing to artsy for the first time, just create the damn branch already! (Safe to re-run as well)
   pusha = "! f() { CURRENT_BRANCH=$(git branch --show-current); git push --set-upstream artsy ${CURRENT_BRANCH}; }; f"
 
+  # Easily create a review app branch with a predictable branch name
+  pushreview = "! f() { CURRENT_BRANCH=$(git branch --show-current); NEW_BRANCH=$(git branch --show-current | sed 's/anandaroop\\///' | sed 's/FX/fx/'); git push artsy ${CURRENT_BRANCH}:review-app-${NEW_BRANCH}; }; f"
+
   # How long have these branches been sitting around?
   stale = "branch --sort=-committerdate --format=\"%(color:#cccccc)%(committerdate:iso)%(color:reset) %(color:red)%(committerdate:relative)%(color:reset) %(color:green)%(refname:short)%(if)%(upstream)%(then) [%(color:blue)%(upstream:short)]%(color:reset)%(end)\""
 
