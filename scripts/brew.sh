@@ -16,18 +16,10 @@ brew install tree
 brew install watchman
 brew install yarn
 
-# hold in favor of asdf?
-#brew install chruby
-#brew install ruby-install
-
-
-# heroku cli
-# brew tap heroku/brew && brew install heroku
-
 # artsy
 brew tap artsy/formulas
-brew install copy_env
-#brew install deploy_pr
+
+# 🏢 👉🏽 got this far work apr 2023
 
 # artsy/hokusai -- homebrew results not great :/ see readme
 # brew install pyenv pipenv

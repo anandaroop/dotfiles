@@ -62,24 +62,30 @@ Keep copies of:
 - Install anandaroop/dotfiles
   - run script/setup.sh
     - to link to shared .zshrc and .gitconfig
-    - on term init, will complain about some as-yet uninstalled things e.g. chruby
+    - on term init, will complain about some as-yet uninstalled things e.g. asdf
 - Install Homebrew via install script
   - run or refer to script/brew.sh
     - to get all Homebrew goodies
     - incl chruby, Starship prompt and many others
-      - chruby needed some tweaking
-        ```sh
-        brew upgrade ruby-install
-        brew reinstall openssl@1.1
-        brew install openssl readline libyaml zlib bison bison@2.7
-        export PATH="$(brew --prefix bison@2.7)/bin:$PATH"
-        export CFLAGS="-Wno-error=implicit-function-declaration"\nexport RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1) --with-readline-dir=$(brew --prefix readline) --with-libyaml-dir=$(brew --prefix libyaml) --with-zlib-dir=$(brew --prefix zlib)"\n\n
-        export CFLAGS="-Wno-error=implicit-function-declaration"\n
-        export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1) --with-readline-dir=$(brew --prefix readline) --with-libyaml-dir=$(brew --prefix libyaml) --with-zlib-dir=$(brew --prefix zlib)"\n
-        ruby-install ruby 2.6.8
-        ```
-- Install NVM via install script
+- Install [asdf](https://asdf-vm.com)  and plugins for
+  - [nodejs](https://github.com/asdf-vm/asdf-nodejs)
+    ```sh
+    brew install <find prerequisites on GH plugin page>
+    asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+    asdf list all nodejs
+    asdf install nodejs 18.15.0 # e.g
+    ```
+  - [ruby](https://github.com/asdf-vm/asdf-ruby)
+    ```sh
+    brew install <find prerequisites on GH plugin page>
+    asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git
+    asdf list all ruby
+    asdf install ruby 3.0.2 # e.g
+    ```
 - Install Docker via offical dmg
+
+🏢 👉🏽 GOT THIS FAR (work laptop 2023)
+
 - Install Hokusai
   - ~~lots of trial and error (due to CERTIFICATE_VERIFY_FAILED error) but what I _think_ worked was~~
     - ~~Install Python 2.7.17 from python.org which includes pip, openssl~~
@@ -116,7 +122,7 @@ Keep copies of:
         ```
   </details>
 
-👉🏽 GOT THIS FAR (personal laptop 2022)
+🏠 👉🏽 GOT THIS FAR (personal laptop 2022)
 
 - Install Tunnelblick and ovpn profiles
 - Journalling
