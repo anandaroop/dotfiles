@@ -16,6 +16,7 @@ Keep copies of:
   ```
 
 ## Basic apps
+
 - [Install Dropbox](https://www.dropbox.com/install)
   - Add personal account only
 - [Install 1Password](https://1password.com/downloads/mac/)
@@ -30,6 +31,7 @@ Keep copies of:
 
 
 ## Design environment
+
 - Adobe Creative Cloud
   - Latest Illustrator
   - Latest Photoshop
@@ -37,9 +39,9 @@ Keep copies of:
   - MAPublisher
   - Geographic Imager
   - [ ] PROJECTIONS
--
 
 ## Dev environment
+
 - Customize Terminal
   - Text > Font: 120x36 20pt Monaco w 1.15 line spacing****
   - Keyboard: Use Option as meta key
@@ -77,6 +79,7 @@ Keep copies of:
         ruby-install ruby 2.6.8
         ```
 - Install NVM via install script
+- Install Docker via offical dmg
 - Install Hokusai
   - ~~lots of trial and error (due to CERTIFICATE_VERIFY_FAILED error) but what I _think_ worked was~~
     - ~~Install Python 2.7.17 from python.org which includes pip, openssl~~
@@ -91,26 +94,29 @@ Keep copies of:
       hokusai staging env get
       ```
 
-- Solargraph esp for Gravity
-  - already in bundle, so that gets installed anyway
-  - BUT solargraph's zsh path is probably fubar'd and looking for the solargraph gem in the system default ruby location
-  - so install solargraph there
-    - go to a dir without a .ruby-version
-    - confirm `which ruby` ==> `/usr/bin/ruby`
-    - `sudo gem install solargraph`
-    - maybe some `sudo gem install bundler:x.y.z` needed to based on VSC output tab
-    - use a minimal workspace settings such as
+- ~Solargraph esp for Gravity~ hold — breaks too often
+  <details>
+  <summary>old steps</summary>
+    - already in bundle, so that gets installed anyway
+    - BUT solargraph's zsh path is probably fubar'd and looking for the solargraph gem in the system default ruby location
+    - so install solargraph there
+      - go to a dir without a .ruby-version
+      - confirm `which ruby` ==> `/usr/bin/ruby`
+      - `sudo gem install solargraph`
+      - maybe some `sudo gem install bundler:x.y.z` needed to based on VSC output tab
+      - use a minimal workspace settings such as
 
-      ```json
-      {
-          "[ruby]": {
-              "editor.formatOnSave": true
-          },
-          "solargraph.formatting": true
-      }
-      ```
+        ```json
+        {
+            "[ruby]": {
+                "editor.formatOnSave": true
+            },
+            "solargraph.formatting": true
+        }
+        ```
+  </details>
 
-## GOT THIS FAR
+👉🏽 GOT THIS FAR (personal laptop 2022)
 
 - Install Tunnelblick and ovpn profiles
 - Journalling
