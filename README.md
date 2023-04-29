@@ -5,16 +5,16 @@ These are my dotfiles and my setup steps for fresh OS X installations.
 Here is a log of my most recent setup (Mar 2020):
 
 ## Basic apps
-- Install Dropbox
+- [Install Dropbox](https://www.dropbox.com/install)
   - Add personal account only
-- Install 1Password
+- [Install 1Password](https://1password.com/downloads/mac/)
   - Choose Dropbox sync to enable the Primary vault, sync'd from .opvault in local Dropbox folder
   - Add Artsy team from 1Password > Account
   - ignore the "Personal" vault that comes with Artsy team
   - Also: disable autofill in
     - Safari > Preferences > Autofill
     - chrome://settings/passwords
-- Install Divvy from App Store
+- Install Divvy from App Store (personal Apple acct)
 - Install Slack from App Store
 
 
@@ -30,21 +30,20 @@ Here is a log of my most recent setup (Mar 2020):
 
 ## Dev environment
 - Customize Terminal
-  - Text > Font: 120x36 20pt Monaco
+  - Text > Font: 120x36 20pt Monaco w 1.15 line spacing****
   - Keyboard: Use Option as meta key
   - Window > Resume: No restoring text
   - Shell: Close if clean exit
-
------------------------------> HERE  <------------------------------
-
   - Advanced: No audible bell; visual always
 - Install XCode
-  - Prefer [developer.apple.com](https://developer.apple.com/download/more/) over App Store
+  - Prefer [developer.apple.com](https://developer.apple.com/download) over App Store
+  - Maybe install latest major version, but penultimate minor version? (14.2 instead of 14.3, as of today)
 - Install VS Code
   - Install `code` shell command from within app
 - Set up [Github ssh access](https://help.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh) with new keypair
   - and copy work keypair from 1password
 - Install [Fira Code](https://github.com/tonsky/FiraCode)
+  - TTF flavor
   - Edit VS Code settings to use it w/ ligatures
   - Set it to Terminal font, to be used by Starship prompt
 - Install anandaroop/dotfiles
