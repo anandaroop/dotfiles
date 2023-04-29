@@ -4,25 +4,25 @@
 brew install starship
 
 # dev tools
-brew cask install docker
 brew install ag
 brew install awscli
 brew install bat
-brew install chruby
 brew install csvkit
+brew install gh
 brew install httpie
-brew install hub
 brew install imagemagick
 brew install jq
-brew install jrnl
-brew install ruby-install
-brew install tidy-html5
 brew install tree
 brew install watchman
 brew install yarn
 
+# hold in favor of asdf?
+#brew install chruby
+#brew install ruby-install
+
+
 # heroku cli
-brew tap heroku/brew && brew install heroku
+# brew tap heroku/brew && brew install heroku
 
 # artsy
 brew tap artsy/formulas
