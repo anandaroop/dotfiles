@@ -2,7 +2,18 @@
 
 These are my dotfiles and my setup steps for fresh OS X installations.
 
-Here is a log of my most recent setup (Mar 2020):
+Here is a log of my most recent setup (Apr 2023):
+
+### Before wiping an older machine
+
+Keep copies of:
+  ```
+  ~/.ssh
+  ~/*.ovpn
+  ~/src/dotfiles/secrets{,-artsy}.sh
+  ~/src/dotfiles/local.sh
+  ~/Library/Scripts
+  ```
 
 ## Basic apps
 - [Install Dropbox](https://www.dropbox.com/install)
