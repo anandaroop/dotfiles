@@ -137,8 +137,6 @@ Keep copies of:
         ```
   </details>
 
-🏠 👉🏽 GOT THIS FAR (personal laptop 2022)
-
 - Install [Tunnelblick and ovpn profiles](https://github.com/artsy/infrastructure/blob/main/vpn.md#vpn)
 - Pairing
   ```sh
