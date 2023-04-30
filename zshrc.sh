@@ -1,3 +1,7 @@
+################
+### TERMINAL ###
+################
+
 # enable starship (after brew install starship)
 eval "$(starship init zsh)"
 
@@ -8,13 +12,12 @@ export CLICOLOR=1
 # removing unwanted chars such as / from this list
 export WORDCHARS="*?_[]~&;!#$%^"
 
-# customize bat pager
-export BAT_THEME=GitHub
-
 # allow #-comments in shell
 setopt interactivecomments
 
+################
 ### DOTFILES ###
+################
 
 # source dotfile aliases
 source ~/src/dotfiles/aliases.sh
@@ -30,15 +33,9 @@ source ~/src/dotfiles/local.sh
 # add dotfile bin scripts to path
 export PATH=~/src/dotfiles/bin:~/bin:$PATH
 
-# android dev
-# export ANDROID_HOME=$HOME/Library/Android/sdk
-# export PATH=$PATH:$ANDROID_HOME/emulator
-# export PATH=$PATH:$ANDROID_HOME/tools
-# export PATH=$PATH:$ANDROID_HOME/tools/bin
-# export PATH=$PATH:$ANDROID_HOME/platform-tools
-export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
-export PATH=$PATH:$ANDROID_SDK_ROOT/emulator
-export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
+################
+## LANGUAGES ###
+################
 
 # configure asdf
 . "$HOME/.asdf/asdf.sh"
@@ -57,3 +54,25 @@ export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
+
+################
+##### MISC #####
+################
+
+# customize bat pager
+export BAT_THEME=GitHub
+
+# non-standard Homebrew paths
+export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
+export PATH="/usr/local/opt/mongodb-community@4.4/bin:$PATH"
+export PATH="/usr/local/opt/postgresql@12/bin:$PATH"
+
+# android dev
+## export ANDROID_HOME=$HOME/Library/Android/sdk
+## export PATH=$PATH:$ANDROID_HOME/emulator
+## export PATH=$PATH:$ANDROID_HOME/tools
+## export PATH=$PATH:$ANDROID_HOME/tools/bin
+## export PATH=$PATH:$ANDROID_HOME/platform-tools
+# export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
+# export PATH=$PATH:$ANDROID_SDK_ROOT/emulator
+# export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools

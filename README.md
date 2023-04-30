@@ -9,25 +9,28 @@ Here is a log of my most recent setup (Apr 2023):
 Keep copies of:
   ```
   ~/.ssh
-  ~/*.ovpn
   ~/src/dotfiles/secrets{,-artsy}.sh
   ~/src/dotfiles/local.sh
   ~/Library/Scripts
+  Insomnia folders
   ```
 
 ## Basic apps
 
-- [Install Dropbox](https://www.dropbox.com/install)
-  - Add personal account only
-- [Install 1Password](https://1password.com/downloads/mac/)
-  - Choose Dropbox sync to enable the Primary vault, sync'd from .opvault in local Dropbox folder
+- Install [Bitwarden](https://bitwarden.com/download/) for personal+family creds
+- Install [1Password](https://1password.com/downloads/mac/) for work creds
+  - ~~Choose Dropbox sync to enable the Primary vault, sync'd from .opvault in local Dropbox folder~~ killed in 1p v8
   - Add Artsy team from 1Password > Account
-  - ignore the "Personal" vault that comes with Artsy team
-  - Also: disable autofill in
-    - Safari > Preferences > Autofill
-    - chrome://settings/passwords
+    - Use "Setup Another…" QR code from another device to streamline this
+  - ~~ignore the "Personal" vault that comes with Artsy team~~ ¿maybe use now?
+- Disable password autofill in
+  - Safari > Preferences > Autofill
+  - chrome://settings/passwords
 - Install Divvy from App Store (personal Apple acct)
 - Install Slack from App Store
+- Install [Lunar](https://lunar.fyi) from website
+- Install [Dropbox](https://www.dropbox.com/install)
+  - Add personal account only
 
 
 ## Design environment
@@ -82,23 +85,35 @@ Keep copies of:
     asdf list all ruby
     asdf install ruby 3.0.2 # e.g
     ```
+- Install [pyenv](https://github.com/pyenv/pyenv) for Python
+  ```sh
+  # see ^instructions, but currently
+  brew install pyenv
+  
+  echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zshrc
+  echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.zshrc
+  echo 'eval "$(pyenv init -)"' >> ~/.zshrc
+
+  rehash
+  pyenv install 3.10.11 # e.g.
+  pyenv global 3.10.11 # e.g.
+  ```
 - Install Docker via offical dmg
 
-🏢 👉🏽 GOT THIS FAR (work laptop 2023)
+- Install Hokusai, as of 2023…
+  ```sh
+  brew tap artsy/formulas
+  brew install hokusai
 
-- Install Hokusai
-  - ~~lots of trial and error (due to CERTIFICATE_VERIFY_FAILED error) but what I _think_ worked was~~
-    - ~~Install Python 2.7.17 from python.org which includes pip, openssl~~
-    - ~~follow post-install instructions for ssl root certs~~
-    - ~~`pip install hokusai`~~
-    - then the [Artsy-specific](https://github.com/artsy/README/blob/master/playbooks/hokusai.md) `hokusai configure`
-
-      ```sh
-      brew install aws-iam-authenticator
-      brew install hokusai
-      hokusai configure --kubectl-version 1.18.10 --s3-bucket artsy-citadel --s3-key k8s/config-dev # check on Slack if there's a newer kubectl version
-      hokusai staging env get
-      ```
+  # this seems to work with v0.6.2...
+  brew install aws-iam-authenticator
+  
+  # ...even though potential/setup has this pin to v0.5.3
+  #curl https://raw.githubusercontent.com/Homebrew/homebrew-core/f40a459c047f2831743dac5d779658e7740a500c/Formula/aws-iam-authenticator.rb > $(find $(brew --repository) -name aws-iam-authenticator.rb) && brew reinstall aws-iam-authenticator
+    
+  aws configure # maybe?
+  hokusai configure --kubectl-version 1.19.16 --s3-bucket artsy-citadel --s3-key k8s/config-dev
+  ```
 
 - ~Solargraph esp for Gravity~ hold — breaks too often
   <details>
@@ -124,30 +139,9 @@ Keep copies of:
 
 🏠 👉🏽 GOT THIS FAR (personal laptop 2022)
 
-- Install Tunnelblick and ovpn profiles
-- Journalling
-  - ~~`brew install jrnl`~~
-  - ~~`brew install jrnl-reminder`~~
-    - ~~apply latest commits and tweak frequency~~
-  ~~- better to just~~
-    ~~- clone my fork of `jrnl-reminder`~~
-    ~~- update `dotfiles/bin/remind-me-to-jrnl.sh` to use that executable~~
-    ~~- add crontab entry for `dotfiles/bin/remind-me-to-jrnl.sh`, e.g.:~~
-      ~~```~~
-      ~~*/15 10-18  *    *   1-5  /path/to/dotfiles/bin/remind-me-to-jrnl.sh >> /tmp/cronlog 2>&1~~
-      ~~```~~
-  ~~- double-check files for absolute paths everywhere~~
-  - meh maybe we're on Foam now?
-    - https://github.com/anandaroop/foam
+- Install [Tunnelblick and ovpn profiles](https://github.com/artsy/infrastructure/blob/main/vpn.md#vpn)
 - Pairing
-  - `yarn global add @jonallured/pear`
-  - cp ~/.pear-data from previous system
-- Insomnia
-  - `brew cask install insomnia`
-- Install [PageExtender](https://github.com/fphilipe/PageExtender.app) from Mac App Store
-  - Configure it to look for css & js in ./page-extender
-- Python
-  - Following https://opensource.com/article/19/5/python-3-default-mac
-  - `brew install pyenv` (if not already installed)
-  - `pyenv install 3.7.3` (e.g.)
-  - `pyenv global 3.7.3` (e.g.)
+  ```sh
+  yarn global add @jonallured/pear
+  curl https://raw.githubusercontent.com/artsy/pear-data/main/.pear-data --output ~/.pear-data
+  ```
