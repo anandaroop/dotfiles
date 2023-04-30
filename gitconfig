@@ -32,3 +32,5 @@
   excludesfile = /Users/roop/.gitignore
 [format]
   pretty = fuller
+[init]
+	defaultBranch = main

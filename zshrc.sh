@@ -1,7 +1,8 @@
 # enable chruby (after brew install chruby)
 source /usr/local/opt/chruby/share/chruby/chruby.sh
 source /usr/local/opt/chruby/share/chruby/auto.sh
-chruby ruby-2.7.1
+# chruby ruby-2.7.1
+
 
 # enable nvm (after installing via default curl method)
 export NVM_DIR="$HOME/.nvm"

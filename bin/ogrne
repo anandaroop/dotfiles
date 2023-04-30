@@ -16,8 +16,8 @@ if !File.exist? 'ogrnerc.json'
     {
       "bounds": "-91 29 -89 31", // xmin ymin xmax ymax
 
-      // "dataset" : "50m", // zoomed MID
       // "dataset" : "110m", // zoomed OUT
+      // "dataset" : "50m", // zoomed MID
       "dataset" : "10m", // zoomed IN
 
       "layers": [
@@ -60,6 +60,7 @@ types = {
   "admin_0_map_units" => "cultural",
   "admin_1_states_provinces_lines" => "cultural",
   "admin_1_states_provinces" => "cultural",
+  "admin_1_states_provinces_scale_rank" => "cultural",
   "populated_places_simple" => "cultural"
 }
 

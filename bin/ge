@@ -1,4 +1,4 @@
-#! /Users/roop/.rubies/ruby-2.6.5/bin/ruby
+#! /usr/bin/env ruby
 # encoding: utf-8
 
 require 'builder'
@@ -101,6 +101,7 @@ class KmlWriter
 				end
 			}
 		}
+		@io.close
 	end
 end
 

@@ -1,3 +1,4 @@
 secrets*
 *-local.sh
 local.sh
+.DS_Store

@@ -57,3 +57,8 @@ alias beep="osascript -e 'beep 3'"
 alias saydone="osascript -e 'say \"done\"'"
 alias repairmongo="mongod --repair --dbpath /usr/local/var/mongodb"
 alias clearcaches="redis-cli flushall && echo "flush_all" | nc localhost 11211"
+
+# projects
+alias pofo="cd ~/src/me/portfolio22 && nvm use"
+alias brain="cd ~/src/me/brain"
+

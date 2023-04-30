@@ -27,10 +27,12 @@ Here is a log of my most recent setup (Mar 2020):
   - Advanced: No audible bell; visual always
 - Install XCode
   - Prefer [developer.apple.com](https://developer.apple.com/download/more/) over App Store
+  - Can install CLI tools separately/simultaneously
 - Install VS Code
   - Install `code` shell command from within app
 - Install NVM via install script
 - Install Homebrew via install script
+  - See brew.sh for packages to install
 - Set up [Github ssh access](https://help.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh) with new keypair
   - and copy work keypair
 - Install anandaroop/dotfiles
