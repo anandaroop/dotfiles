@@ -5,6 +5,9 @@
   # When pushing to artsy for the first time, just create the damn branch already! (Safe to re-run as well)
   pusha = "! f() { CURRENT_BRANCH=$(git branch --show-current); git push --set-upstream artsy ${CURRENT_BRANCH}; }; f"
 
+  # Easily create a review app branch with a predictable branch name
+  pushreview = "! f() { CURRENT_BRANCH=$(git branch --show-current); NEW_BRANCH=$(git branch --show-current | sed 's/anandaroop\\///' | sed 's/FX/fx/'); git push artsy ${CURRENT_BRANCH}:review-app-${NEW_BRANCH}; }; f"
+
   # How long have these branches been sitting around?
   stale = "branch --sort=-committerdate --format=\"%(color:#cccccc)%(committerdate:iso)%(color:reset) %(color:red)%(committerdate:relative)%(color:reset) %(color:green)%(refname:short)%(if)%(upstream)%(then) [%(color:blue)%(upstream:short)]%(color:reset)%(end)\""
 
@@ -13,6 +16,12 @@
 
   # Who's been up in these files? (Can take a path)
   who = "log --follow --pretty=\"%C(blue)%cr%C(reset) %C(red)%C(bold)%an %C(reset)%C(green)%s\""
+
+  # What change added or removed a given search string?
+  changed = "! f() { git log -S $1 --pretty=\"%h %Cred%ar %Cblue%aN %Cgreen%s\"; }; f"
+
+  # Who made a change that added or removed a given search string?
+  whochanged = "! f() { git log -S $1 --name-status --pretty=\"%n %C(yellow)%h %C(green)%an %C(red)%cd %C(blue)%s%Creset\" --date=relative; }; f"
 
   # When did some commit go out to staging? to production? (Takes a sha)
   when = "! f() { for e in staging production; do git tag --list "$e-*" --contains $1 | sort | head -1; done }; f"

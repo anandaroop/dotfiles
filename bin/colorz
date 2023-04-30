@@ -1,0 +1,105 @@
+#! /usr/bin/env ruby
+
+require 'json'
+
+FORMAT_ARG = <<~FORMAT
+    {
+        "meta": {
+            "filename": "%f",
+            "basename": "%[basename]",
+            "directory": "%[directory]",
+            "magick": "%[magick]",
+            "quality": %[quality],
+            "size": "%[size]"
+        },
+        "geometry": {
+            "width": %[width],
+            "height": %[height],
+            "units": "%[units]",
+            "resolution.x": %[resolution.x],
+            "resolution.y": %[resolution.y]
+        },
+        "color": {
+            "colorspace": "%[colorspace]",
+            "profile:icc": "%[profile:icc]",
+            "exif:colorspace": "%[exif:ColorSpace]",
+            "profiles": "%[profiles]",
+            "bit-depth": %[bit-depth],
+            "gamma": %[gamma],
+            "channels": "%[channels]",
+            "colors": %[colors]
+        }
+    }
+FORMAT
+
+ARGV.each do |path|
+    # pp path
+    verbose_info = `identify -verbose -format '#{FORMAT_ARG}' "#{path}" 2> /dev/null`
+    # pp verbose_info
+    parsed = JSON.parse(verbose_info)
+    # pp parsed
+    puts parsed.to_json
+end
+
+=begin
+basename # base filename, no suffixes (as %t)
+bit-depth # Actual bit-depth of the pixel data
+bounding-box # upper left and lower right corners of the image bounding box
+caption # caption meta-data property
+caption:lines # returns the number lines generated when wrapping the caption
+caption:pointsize # returns the pointsize computed during caption: processing
+channels # colorspace neumonic followed by total number of channels and meta channets, e.g., cmyka 8.3 indicates a CMYK image with alpha channel for a total of 8 channels and 3 meta channels.
+colors # Number of unique colors in the image (as of IM 7.0.3.8)
+colorspace # colorspace of Image Data (excluding transparency)
+compose #
+compression # image compression type
+convex-hull # points that form a convex hull around the foreground object. Use -define convex-hull:background-color=color to identify the image background color. Use -fuzz to allow for a non-uniform background color.
+convex-hull:extreme-points # return the top, right, bottom, and left extreme points of the convex hull.
+copyright # ImageMagick Copyright String
+depth # depth of image for write (as input unless changed)
+deskew:angle # The deskew angle in degrees of rotation
+directory # directory part of filename (as %d)
+distortion # how well an image resembles a reference image (-compare)
+dominant-color # return the dominate image color in hex. Preceed usage with -kmeans.
+entropy # CALCULATED: entropy of the image
+extension # extension part of filename (as %e)
+gamma # value of image gamma
+group # ??? window group ???
+height # original height of image (when it was read in)
+histogram:contrast-stretch # computed min and max contrast stretch percentage
+histogram:linear-stretch # computed min and max linear stretch percentage
+input #
+interlace # Image interlace mode (as of IM 7.0.3.8)
+kurtosis # CALCULATED: kurtosis statistic of image
+label # label meta-data property
+label:pointsize # returns the pointsize computed during label: processing
+magick # coder used to read image (not the file suffix)
+max # CALCULATED: maximum value statistic of image
+mean # CALCULATED: average value statistic of image
+median # CALCULATED: median value statistic of image
+min # CALCULATED: minimum value statistic of image
+minimum-bounding-box # Use -define convex-hull:background-color=color to identify the image background color. Use -fuzz to allow for a non-uniform background color. In addition to the bounding box points, these properties are set: minimum-bounding-box:area, minimum-bounding-box:width, minimum-bounding-box:height, minimum-bounding-box:angle, and minimum-bounding-box:unrotate.
+opaque # CALCULATED: is image fully-opaque?
+orientation # image orientation
+page # Virtual canvas (page) geometry
+papersize:name # paper size for name in pixels at 72DPI (e.g. papersize:A4)
+printsize.x # X printsize
+printsize.y # Y printsize
+profile:icc # ICC profile info
+profile:icm # ICM profile info
+profiles # list of any embedded profiles
+quality # Image quality value (as of IM 7.0.3.8)
+rendering-intent # Image rendering intent (as of IM 7.0.3.8)
+resolution.x # X density (resolution) without units
+resolution.y # Y density (resolution) without units
+scene # original scene number of image in input file
+size # original size of image (when it was read in)
+skewness # CALCULATED: skewness statistic of image
+standard-deviation # CALCULATED: standard deviation statistic of image
+type # CALCULATED: image type
+unique # unique temporary filename ???
+units # image resolution units
+version # Version Information of this running ImageMagick
+width # original width of image (when it was read in)
+zero # zero (unique filename for delegate use)
+=end

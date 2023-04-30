@@ -35,7 +35,7 @@ alias gstale='git stale'
 alias gwho="git who"
 alias gwhat='git what'
 alias gwhen='git when'
-alias glog='git log --graph --pretty="%C(yellow)%h%Creset %s%C(red)%d%Creset"'
+alias glog='git log --graph --pretty="%C(yellow)%h%Creset %C(red)%cd %Creset%s %C(blue)%d%Creset" --date=relative'
 alias gmerges='git log --merges --invert-grep --grep="Update metaphysics schema" --pretty="%h %C(blue)%ci %C(red)%s"'
 
 # webdev
@@ -56,9 +56,4 @@ alias yarnlinks="find node_modules -maxdepth 2 -type l | grep -v -E '\.bin'"
 alias beep="osascript -e 'beep 3'"
 alias saydone="osascript -e 'say \"done\"'"
 alias repairmongo="mongod --repair --dbpath /usr/local/var/mongodb"
-alias clearcaches="redis-cli flushall && echo "flush_all" | nc localhost 11211"
-
-# projects
-alias pofo="cd ~/src/me/portfolio22 && nvm use"
-alias brain="cd ~/src/me/brain"
-
+alias flushcaches="redis-cli FLUSHALL; echo flush_all | nc localhost 11211"
