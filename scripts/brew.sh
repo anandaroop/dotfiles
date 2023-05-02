@@ -13,6 +13,7 @@ brew install httpie
 brew install insomnia
 brew install jq
 brew install tree
+brew install watchexec
 brew install watchman
 brew install yarn
 
