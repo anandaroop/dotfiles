@@ -37,12 +37,30 @@ export PATH=~/src/dotfiles/bin:~/bin:$PATH
 ## LANGUAGES ###
 ################
 
-# configure asdf
-. "$HOME/.asdf/asdf.sh"
-# append completions to fpath
-fpath=(${ASDF_DIR}/completions $fpath)
-# initialise completions with ZSH's compinit
-autoload -Uz compinit && compinit
+# enable asdf (preferred over chruby and nvm now)
+if [ -d $HOME/.asdf ]; then
+  # configure asdf
+  . "$HOME/.asdf/asdf.sh"
+  # append completions to fpath
+  fpath=(${ASDF_DIR}/completions $fpath)
+  # initialise completions with ZSH's compinit
+  autoload -Uz compinit && compinit
+else
+  # enable chruby (if installed via brew install chruby)
+  if [ -d /usr/local/opt/chruby ]; then
+    source /usr/local/opt/chruby/share/chruby/chruby.sh
+    source /usr/local/opt/chruby/share/chruby/auto.sh
+    chruby ruby-2.7.4
+  fi
+
+  # enable nvm (if installed via default curl method)
+  if [ -d $HOME/.nvm ]; then
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+  fi
+fi
+
 
 # enable pyenv
 if command -v pyenv 1>/dev/null 2>&1; then
