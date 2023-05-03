@@ -12,7 +12,9 @@ Keep copies of:
   ~/src/dotfiles/secrets{,-artsy}.sh
   ~/src/dotfiles/local.sh
   ~/Library/Scripts
-  Insomnia folders
+  Insomnia settings
+  ~/Desktop files and folders, if needed
+  Custom Projections from Avenza dir
   ```
 
 ## Basic apps
@@ -41,7 +43,7 @@ Keep copies of:
 - Avenza
   - MAPublisher
   - Geographic Imager
-  - [ ] PROJECTIONS
+  - Custom Projections
 
 ## Dev environment
 
