@@ -8,6 +8,7 @@ brew install ag
 brew install awscli
 brew install bat
 brew install csvkit
+brew install ffmpeg
 brew install gh
 brew install httpie
 brew install insomnia
