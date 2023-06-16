@@ -32,6 +32,9 @@
   # BORKED: What's ready to go out to prod?
   # deployable = "! f() { for remote in artsy upstream; do git fetch "$remote" 2> /dev/null; done; git log --date=format:\"%m/%d %H:%M\" --pretty=format:\"%C(yellow)%cd %C(blue)%h %C(red)%an %C(reset)%s\" staging...production; }; f"
 
+  # Show examples of addition/removal of some string
+  examples = "! f() { git log -S $1 --pretty=\"%n%n%Cred%cd %Cblue%an %Cgreen%s %Creset%h\" --date=relative --name-status --diff-filter=AM; }; f"
+
   # Check out the other most recently committed branch
   pop = "! f() { git checkout $(branchpop); }; f"
 [user]
