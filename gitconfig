@@ -26,6 +26,9 @@
   # When did some commit go out to staging? to production? (Takes a sha)
   when = "! f() { for e in staging production; do git tag --list "$e-*" --contains $1 | sort | head -1; done }; f"
 
+  # When did some commit get released to iOS? to Android? (Takes a sha) [via @brainbicycle]
+  which-release = "! f() { for e in ios android; do git tag --list \"$e-*-submission\" --contains $1 | sort -V | head -1; done }; f"
+
   # BORKED: What's ready to go out to prod?
   # deployable = "! f() { for remote in artsy upstream; do git fetch "$remote" 2> /dev/null; done; git log --date=format:\"%m/%d %H:%M\" --pretty=format:\"%C(yellow)%cd %C(blue)%h %C(red)%an %C(reset)%s\" staging...production; }; f"
 
