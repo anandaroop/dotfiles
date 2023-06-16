@@ -1,0 +1,31 @@
+#! /bin/bash
+
+usage () {
+  echo "Usage: mov2mov path/to/file.mov"
+  echo ""
+  echo "Example:"
+  echo "  mov2mov ~/Desktop/screencap.mov"
+}
+
+if [ $# -ne 1 ]; then
+  usage
+  exit 1
+fi
+
+if [ ! -f "$1" ]; then
+  echo "Source file does not exist!"
+  exit 1
+fi
+
+DESTINATION_FILE=`echo $1 | sed 's/.mov$/.out.mov/'`
+
+if [ -f $DESTINATION_FILE ]; then
+  echo "Destination file exists!"
+  exit 1
+fi
+
+# normal quality
+ffmpeg -i "$1" -vf "scale=-2:1200, fps=10" $DESTINATION_FILE
+
+# speed up
+# ffmpeg -i "$1" -vf "scale=-2:1200, fps=10, setpts=0.5*PTS" $DESTINATION_FILE
