@@ -22,13 +22,13 @@ Keep copies of:
 - Install [Bitwarden](https://bitwarden.com/download/) for personal+family creds
 - Install [1Password](https://1password.com/downloads/mac/) for work creds
   - ~~Choose Dropbox sync to enable the Primary vault, sync'd from .opvault in local Dropbox folder~~ killed in 1p v8
-  - Add Artsy team from 1Password > Account
-    - Use "Setup Another…" QR code from another device to streamline this
-  - ~~ignore the "Personal" vault that comes with Artsy team~~ ¿maybe use now?
+  - Add Artsy team from 1Password > Accounts
+    - Use "Scan setup code" QR from another device to streamline this
+  - use "Personal" vault that comes with Artsy team *only* for user-specific work accounts with Artsy-related services, not for personal accounts
 - Disable password autofill in
   - Safari > Preferences > Autofill
   - chrome://settings/passwords
-- Install Divvy from App Store (personal Apple acct)
+- Install ~~Divvy from App Store (personal Apple acct)~~ Raycast from web
 - Install Slack from App Store
 - Install [Lunar](https://lunar.fyi) from website
 - Install [Dropbox](https://www.dropbox.com/install)
