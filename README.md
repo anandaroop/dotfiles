@@ -99,6 +99,8 @@ Keep copies of:
   rehash
   pyenv install 3.10.11 # e.g.
   pyenv global 3.10.11 # e.g.
+
+  # see https://github.com/pyenv/pyenv-virtualenv for virtualenv plugin also
   ```
 - Install Docker via offical dmg
 
