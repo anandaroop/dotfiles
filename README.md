@@ -103,6 +103,7 @@ Keep copies of:
   # see https://github.com/pyenv/pyenv-virtualenv for virtualenv plugin also
   ```
 - Install Docker via offical dmg
+  - And maybe Rosetta 2 for Apple Silicon (see [known issues](https://docs.docker.com/desktop/troubleshoot/known-issues/)) 
 
 - Install Hokusai, as of 2023…
   ```sh
