@@ -2,7 +2,7 @@
 
 These are my dotfiles and my setup steps for fresh OS X installations.
 
-Here is a log of my most recent setup (Apr 2023):
+Here is a log of my most recent setup (August 2023):
 
 ### Before wiping an older machine
 
