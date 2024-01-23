@@ -69,5 +69,9 @@ alias tbd="tunnelblick disconnect all"
 # integrity
 alias fxe2e="cd ~/src/artsy/integrity && git pull artsy main && yarn cypress run --spec \"cypress/e2e/find_and_explore/*\""
 
-#tmp
-alias es6up="docker run -it -p 9200:9200 -e http.cors.enabled=true -e http.cors.allow-origin='*' elasticsearch:6.8.23"
+# pre m1
+# alias es6up="docker run -it -p 9200:9200 -e http.cors.enabled=true -e http.cors.allow-origin='*' elasticsearch:6.8.23"
+
+# post m1
+alias es6up="docker run -it -p 9200:9200 -e http.cors.enabled=true -e http.cors.allow-origin='*' -e \"discovery.type=single-node\" --platform linux/amd64 elasticsearch:6.8.23"
+alias es7up="docker run -it -p 9200:9200 -e http.cors.enabled=true -e http.cors.allow-origin='*' -e \"discovery.type=single-node\" elasticsearch:7.17.12"
