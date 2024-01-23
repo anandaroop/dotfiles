@@ -95,3 +95,6 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 # export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
 # export PATH=$PATH:$ANDROID_SDK_ROOT/emulator
 # export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
+
+# bun completions
+[ -s "/Users/roop/.bun/_bun" ] && source "/Users/roop/.bun/_bun"
