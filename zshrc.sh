@@ -81,9 +81,10 @@ eval "$(pyenv virtualenv-init -)"
 export BAT_THEME=GitHub
 
 # non-standard Homebrew paths
-export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
-export PATH="/usr/local/opt/mongodb-community@4.4/bin:$PATH"
-export PATH="/usr/local/opt/postgresql@12/bin:$PATH"
+export PATH="/opt/homebrew/opt/imagemagick@6/bin:$PATH"
+export PATH="/opt/homebrew/opt/mongodb-community@4.4/bin:$PATH"
+export PATH="/opt/homebrew/opt/postgresql@12/bin:$PATH"
+export PATH="/opt/homebrew/opt/openjdk@17/bin:$PATH"
 
 # android dev
 ## export ANDROID_HOME=$HOME/Library/Android/sdk
