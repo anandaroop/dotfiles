@@ -47,6 +47,7 @@ alias bex="bundle exec"
 alias bgu="bundle exec guard"
 alias rfebgu="RSPEC_FOCUS_ENABLED=1 bundle exec guard"
 alias frbe="foreman run bundle exec"
+alias copa="bundle exec rubocop -A \$(git diff --name-only | grep -E '.*\.rb$')"
 
 # javascript
 alias yrs="yarn run storybook"

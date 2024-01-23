@@ -16,6 +16,7 @@ alias hpdb="hokusai production run 'bundle exec rails dbconsole' --tty --verbose
 alias dd2sha="! f() { hokusai registry images --limit 20 --digests --filter-tags prod | grep \$1 | cut -d \| -f 3 | cut -c2-41 }; f"
 
 # projects
+alias gfa="git fetch artsy"
 alias maybe-nvm="nvm use 2> /dev/null || echo Skipping nvm"
 alias gravity="cd ~/src/artsy/gravity"
 alias sc="gravity && hsc"
