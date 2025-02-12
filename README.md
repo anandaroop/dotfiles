@@ -12,7 +12,6 @@ Keep copies of:
   ~/src/dotfiles/secrets{,-artsy}.sh
   ~/src/dotfiles/local.sh
   ~/Library/Scripts
-  Insomnia settings
   ~/Desktop files and folders, if needed
   Custom Projections from Avenza dir
   ```
