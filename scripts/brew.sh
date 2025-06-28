@@ -18,6 +18,7 @@ brew install tree
 brew install watchexec
 brew install watchman
 brew install yarn
+brew install difftastic
 
 # geo tools
 brew install gdal
