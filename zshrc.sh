@@ -83,17 +83,13 @@ export BAT_THEME=GitHub
 export PATH="/opt/homebrew/opt/imagemagick@6/bin:$PATH"
 export PATH="/opt/homebrew/opt/mongodb-community@4.4/bin:$PATH"
 export PATH="/opt/homebrew/opt/postgresql@12/bin:$PATH"
-export PATH="/opt/homebrew/opt/openjdk@17/bin:$PATH"
+# export PATH="/opt/homebrew/opt/openjdk@17/bin:$PATH" # commented out in favor of asdf's java dep for Eigen
 
 # android dev
 export ANDROID_HOME=$HOME/Library/Android/sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/platform-tools
-## export PATH=$PATH:$ANDROID_HOME/tools
-## export PATH=$PATH:$ANDROID_HOME/tools/bin
-# export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
-# export PATH=$PATH:$ANDROID_SDK_ROOT/emulator
-# export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
+# export JAVA_HOME=/Users/roop/.asdf/installs/java/zulu-17.50.19
 
 # bun completions
 [ -s "/Users/roop/.bun/_bun" ] && source "/Users/roop/.bun/_bun"
