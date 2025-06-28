@@ -72,17 +72,6 @@ else
 fi
 
 
-# enable pyenv
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-fi
-
-# pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-
 ################
 ##### MISC #####
 ################
@@ -108,3 +97,25 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 # bun completions
 [ -s "/Users/roop/.bun/_bun" ] && source "/Users/roop/.bun/_bun"
+
+### PYENV ###
+
+# OLD via homebrew
+#
+# # enable pyenv
+# if command -v pyenv 1>/dev/null 2>&1; then
+#   eval "$(pyenv init -)"
+# fi
+#
+# # pyenv
+# export PYENV_ROOT="$HOME/.pyenv"
+# command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+# eval "$(pyenv init -)"
+# eval "$(pyenv virtualenv-init -)"
+
+# NEW see https://artsy.slack.com/archives/CP9P4KR35/p1748964351453869?thread_ts=1748897836.786939&cid=CP9P4KR35
+
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$HOME/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
