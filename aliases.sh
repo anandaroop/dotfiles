@@ -19,6 +19,7 @@ alias gcm="git checkout main 2> /dev/null || git checkout master 2> /dev/null; g
 alias gpum="git pull upstream main 2> /dev/null || git pull upstream master 2> /dev/null; git branch --show-current"
 alias gpam="git pull artsy main 2> /dev/null || git pull artsy master 2> /dev/null; git branch --show-current"
 alias gdf="git diff"
+alias gdt="GIT_EXTERNAL_DIFF=difft git diff"
 alias gdc="git diff --cached"
 alias gcb="git checkout -b"
 alias gri="git rebase -i"
