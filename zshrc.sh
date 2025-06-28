@@ -39,12 +39,22 @@ export PATH=~/src/dotfiles/bin:~/bin:$PATH
 
 # enable asdf (preferred over chruby and nvm now)
 if [ -d $HOME/.asdf ]; then
-  # configure asdf
-  . "$HOME/.asdf/asdf.sh"
-  # append completions to fpath
-  fpath=(${ASDF_DIR}/completions $fpath)
-  # initialise completions with ZSH's compinit
-  autoload -Uz compinit && compinit
+  export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+  # export ASDF_DATA_DIR=/Users/roop/.asdf
+  # export PATH="$ASDF_DATA_DIR/shims:$PATH"
+
+  # # append completions to fpath
+  # fpath=(/opt/homebrew/share/zsh/site-functions $path)
+  # fpath=(${ASDF_DATA_DIR:-$HOME/.asdf}/completions $fpath)
+  # # initialise completions with ZSH's compinit
+  # autoload -Uz compinit && compinit
+
+  # # configure asdf
+  # . "$HOME/.asdf/asdf.sh"
+  # # append completions to fpath
+  # fpath=(${ASDF_DIR}/completions $fpath)
+  # # initialise completions with ZSH's compinit
+  # autoload -Uz compinit && compinit
 else
   # enable chruby (if installed via brew install chruby)
   if [ -d /usr/local/opt/chruby ]; then
