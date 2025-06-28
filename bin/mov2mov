@@ -17,7 +17,9 @@ if [ ! -f "$1" ]; then
   exit 1
 fi
 
-DESTINATION_FILE=`echo $1 | sed 's/.mov$/.out.mov/'`
+DESTINATION_FILE=`echo $1 | sed -E 's/\.(mov|MP4)$/.out.mov/i'`
+# echo $1
+# echo $DESTINATION_FILE
 
 if [ -f $DESTINATION_FILE ]; then
   echo "Destination file exists!"
@@ -25,7 +27,10 @@ if [ -f $DESTINATION_FILE ]; then
 fi
 
 # normal quality
-ffmpeg -i "$1" -vf "scale=-2:1200, fps=10" $DESTINATION_FILE
+# ffmpeg -i "$1" -vf "scale=-2:1200, fps=10" $DESTINATION_FILE
 
-# speed up
-# ffmpeg -i "$1" -vf "scale=-2:1200, fps=10, setpts=0.5*PTS" $DESTINATION_FILE
+# normal speed and strip audio
+ffmpeg -i "$1" -an -vf "scale=-2:1200, fps=10" $DESTINATION_FILE
+
+# speed up and strip audio
+# ffmpeg -i "$1" -an -vf "scale=-2:1200, fps=10, setpts=0.5*PTS" $DESTINATION_FILE
