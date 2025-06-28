@@ -45,6 +45,13 @@ alias vortex="cd ~/src/artsy/vortex"
 alias eigen="cd ~/src/artsy/eigen && maybe-nvm"
 alias forque="cd ~/src/artsy/forque && maybe-nvm"
 
+# innies
+alias quantum="cd ~/src/artsy/quantum"
+alias qt="quantum"
+alias squadup="git diff && git stash save -u && git fetch artsy && git checkout ai-squad && git reset --hard artsy/ai-squad"
+openai_api_key () { export OPENAI_API_KEY=$(op item get ua7lfrl3wll4kd6etiln54th34 --fields credential) }
+alias oai="openai_api_key"
+
 # journalling
 alias j="jrnl"
 alias jt="jrnl -on today"
