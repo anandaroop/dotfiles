@@ -83,3 +83,5 @@ alias onyxe2e="cd ~/src/artsy/integrity && git pull artsy main && yarn cypress r
 # post m1
 alias es6up="docker run -it -p 9200:9200 -e http.cors.enabled=true -e http.cors.allow-origin='*' -e \"discovery.type=single-node\" --platform linux/amd64 elasticsearch:6.8.23"
 alias es7up="docker run -it -p 9200:9200 -e http.cors.enabled=true -e http.cors.allow-origin='*' -e \"discovery.type=single-node\" elasticsearch:7.17.12"
+
+alias observe="cd ~/src/me/observe-artsy && code . && yarn dev && op signin"
