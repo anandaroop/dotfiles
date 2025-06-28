@@ -12,7 +12,7 @@
   stale = "branch --sort=-committerdate --format=\"%(color:#cccccc)%(committerdate:iso)%(color:reset) %(color:red)%(committerdate:relative)%(color:reset) %(color:green)%(refname:short)%(if)%(upstream)%(then) [%(color:blue)%(upstream:short)]%(color:reset)%(end)\""
 
   # What files have been touched recently? (Can take a path)
-  what = "log --name-status --pretty=\"%n%C(green)%C(bold)%s%n%C(blue)%cd%C(reset) %C(#eeeeee)%h\" --date=relative"
+  what = "log --name-status --pretty=\"%n%C(green)%C(bold)%s%n%C(blue)%cd%C(reset) %C(#eeeeee)%h%C(reset) %C(yellow)%an\" --date=relative"
 
   # Who's been up in these files? (Can take a path)
   who = "log --follow --pretty=\"%C(blue)%cr%C(reset) %C(red)%C(bold)%an %C(reset)%C(green)%s\""
