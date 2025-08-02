@@ -61,16 +61,21 @@ else
   fi
 fi
 
-
 # enable pyenv
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-fi
+# if command -v pyenv 1>/dev/null 2>&1; then
+#   eval "$(pyenv init -)"
+# fi
 
 # pyenv
+# export PYENV_ROOT="$HOME/.pyenv"
+# command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+# eval "$(pyenv init -)"
+# eval "$(pyenv virtualenv-init -)"
+
+# pyenv 2025
 export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
 eval "$(pyenv virtualenv-init -)"
 
 ################
@@ -82,9 +87,9 @@ export BAT_THEME=GitHub
 
 # non-standard Homebrew paths
 export PATH="/opt/homebrew/opt/imagemagick@6/bin:$PATH"
-export PATH="/opt/homebrew/opt/mongodb-community@4.4/bin:$PATH"
-export PATH="/opt/homebrew/opt/postgresql@12/bin:$PATH"
-export PATH="/opt/homebrew/opt/openjdk@17/bin:$PATH"
+export PATH="/opt/homebrew/opt/mongodb-community@7.0/bin:$PATH"
+export PATH="/opt/homebrew/opt/postgresql@14/bin:$PATH"
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 
 # android dev
 export ANDROID_HOME=$HOME/Library/Android/sdk
