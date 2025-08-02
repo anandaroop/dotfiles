@@ -71,6 +71,22 @@ else
   fi
 fi
 
+# enable pyenv
+# if command -v pyenv 1>/dev/null 2>&1; then
+#   eval "$(pyenv init -)"
+# fi
+
+# pyenv
+# export PYENV_ROOT="$HOME/.pyenv"
+# command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+# eval "$(pyenv init -)"
+# eval "$(pyenv virtualenv-init -)"
+
+# pyenv 2025
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
+eval "$(pyenv virtualenv-init -)"
 
 ################
 ##### MISC #####
@@ -83,6 +99,7 @@ export BAT_THEME=GitHub
 export PATH="/opt/homebrew/opt/imagemagick@6/bin:$PATH"
 export PATH="/opt/homebrew/opt/mongodb-community@4.4/bin:$PATH"
 export PATH="/opt/homebrew/opt/postgresql@12/bin:$PATH"
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 # export PATH="/opt/homebrew/opt/openjdk@17/bin:$PATH" # commented out in favor of asdf's java dep for Eigen
 
 # android dev
