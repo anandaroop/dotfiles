@@ -86,3 +86,31 @@ alias es7up="docker run -it -p 9200:9200 -e http.cors.enabled=true -e http.cors.
 
 alias observe="cd ~/src/me/observe-artsy && code . && yarn dev && op signin"
 alias userid="op item get 'Artsy (old gmail login)' --fields 'username,Gravity User ID' && op item get 'Artsy (roop@)' --fields 'username,Gravity User ID'"
+
+# devx hackz
+alias tokenz="/Users/roop/src/artsy/tokenz/tokenz.rb"
+alias deployz="/Users/roop/src/artsy/deployz/bin/deployz"
+alias vlt="/Users/roop/src/artsy/vlt/bin/vlt"
+alias vaultz="vlt"
+alias self-review="/Users/roop/src/artsy/self-review/bin/self-review"
+
+repos-busiest () {
+  local time_ago=${1:-1w} # y|m|w|d|H|M|S
+  repos-pulls ${time_ago} | tee "tmp-repos-busiest" >&2
+  echo "\n\033[1;32mBusiest repos in the last ${time_ago}:\033[0m"
+  cat tmp-repos-busiest | jq -r ".repo" | sort | uniq -c | sort -n -r
+  rm tmp-repos-busiest
+}
+
+repos-pulls () {
+  local time_ago=${1:-1w} # y|m|w|d|H|M|S
+  for repo in $(repos-updated ${time_ago} | jq -r '.name')
+  do
+    gh pr list --repo artsy/${repo} --limit 100 --state merged --search "merged:>$(date -v-${time_ago} +%Y-%m-%d)" --json author,title,mergedAt,url,headRepository | jq -c '.[] | select(.author.login | test("^app/") | not) | select(.author.login | test("^artsyit$") | not) | {mergedAt, repo: .headRepository.name, author: .author.login, title}'
+  done
+}
+
+repos-updated () {
+  local time_ago=${1:-1w} # y|m|w|d|H|M|S
+  gh repo list artsy --limit 100 --json pushedAt,name | jq -c --arg time_ago "$(date -v-${time_ago} +%Y-%m-%dT%H:%M:%SZ)" '.[] | select(.pushedAt >= $time_ago) | { pushedAt, name }'
+}
