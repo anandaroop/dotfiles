@@ -100,9 +100,11 @@ export BAT_THEME=GitHub
 
 # non-standard Homebrew paths
 export PATH="/opt/homebrew/opt/imagemagick@6/bin:$PATH"
-export PATH="/opt/homebrew/opt/mongodb-community@4.4/bin:$PATH"
-export PATH="/opt/homebrew/opt/postgresql@12/bin:$PATH"
+export PATH="/opt/homebrew/opt/mongodb-community@7.0/bin:$PATH"
+export PATH="/opt/homebrew/opt/postgresql@14/bin:$PATH"
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+# export PATH="/opt/homebrew/opt/mongodb-community@4.4/bin:$PATH"
+# export PATH="/opt/homebrew/opt/postgresql@12/bin:$PATH"
 # export PATH="/opt/homebrew/opt/openjdk@17/bin:$PATH" # commented out in favor of asdf's java dep for Eigen
 
 # android dev

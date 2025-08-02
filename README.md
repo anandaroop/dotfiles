@@ -76,17 +76,14 @@ Keep copies of:
   - TTF flavor
   - Edit VS Code settings to use it w/ ligatures
   - Set it to Terminal font, to be used by Starship prompt
-
 - Install [anandaroop/dotfiles](https://github.com/anandaroop/dotfiles)
   - run script/setup.sh
     - to link to shared .zshrc and .gitconfig
     - on term init, will complain about some as-yet uninstalled things e.g. asdf
-
 - Install [Homebrew](https://brew.sh) via install script
   - run or refer to script/brew.sh
     - to get all Homebrew goodies
     - incl Starship prompt and many others
-
 - Install 
   - [mise en place](https://mise.jdx.dev)
   <br>—<b>and/or</b>–
