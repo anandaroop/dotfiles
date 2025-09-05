@@ -88,6 +88,9 @@ export PYENV_ROOT="$HOME/.pyenv"
 eval "$(pyenv init - zsh)"
 eval "$(pyenv virtualenv-init -)"
 
+# pipx for python based cli tools with isolated environments
+export PATH="/Users/roop/.local/bin:$PATH"
+
 ################
 ##### MISC #####
 ################

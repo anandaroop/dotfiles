@@ -2,34 +2,41 @@
 
 These are my dotfiles and my setup steps for fresh OS X installations.
 
-Here is a log of my most recent setup (August 2023):
+Here is a log of my most recent setup (August 2025):
 
 ### Before wiping an older machine
 
 Keep copies of:
-  ```
-  ~/.ssh
-  ~/src/dotfiles/secrets{,-artsy}.sh
-  ~/src/dotfiles/local.sh
-  ~/Library/Scripts
-  ~/Desktop files and folders, if needed
-  Custom Projections from Avenza dir
-  ```
+
+- `~/.ssh`
+- `~/src/dotfiles/secrets{,-artsy}.sh`
+- `~/src/dotfiles/local.sh`
+- `~/src/*` as needed, if not cloning
+- `/Users/Shared/{Fonts,Geodata,etc}`
+- `~/Library/Scripts`
+- `~/Desktop` files and folders, if needed
+  - incl infinite regress of `Old Desktop` folders
+- Usual `~` folders
+  - Documents, Music, Pictures, .Movies
+- Tags backup from Typeface app 
+  - (`~/Library/​Containers/​com.criminalbird.typeface.standalone`)
+- Custom Projections from Avenza 
+  - (`/Applications/Avenza/MAPublisher XX.Y/MAPublisher Plug-in/Data Source Files`>)
+
 
 ## Basic apps
 
 - Install [Bitwarden](https://bitwarden.com/download/) for personal+family creds
   - Prefer App Store installation, for Safari extension integration
 - Install [1Password](https://1password.com/downloads/mac/) for work creds
-  - ~~Choose Dropbox sync to enable the Primary vault, sync'd from .opvault in local Dropbox folder~~ killed in 1p v8
-  - ~Add Artsy team from 1Password > Accounts~
-    - ~Use "Scan setup code" QR from another device to streamline this~
+  - ~~Add Artsy team from 1Password > Accounts~~
+    - ~~Use "Scan setup code" QR from another device to streamline this~~
   - use "Personal"/"Employee" vault that comes with Artsy team *only* for user-specific work accounts with Artsy-related services, not for personal accounts
 - Disable password autofill in
   - Safari > Preferences > Autofill
   - chrome://settings/passwords
-- Install ~~Divvy from App Store (personal Apple acct)~~ Raycast from web
 - Install Slack from App Store
+- Install [Raycast](https://www.raycast.com) from web for window, clipboard, etc mgmt
 - Install [Lunar](https://lunar.fyi) from website
 - Install [Dropbox](https://www.dropbox.com/install)
   - Add personal account only
@@ -53,26 +60,33 @@ Keep copies of:
   - Window > Resume: No restoring text
   - Shell: Close if clean exit
   - Advanced: No audible bell; visual always
+
 - Install XCode
   - Prefer [developer.apple.com](https://developer.apple.com/download) over App Store
   - Maybe install latest major version, but penultimate minor version?
+
 - Install VS Code
   - Install `code` shell command from within app
+
 - Set up [Github ssh access](https://help.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh) 
   - with new keypair and copy work keypair from 1password
   - or use keypairs from old machine
+
 - Install [Fira Code](https://github.com/tonsky/FiraCode)
   - TTF flavor
   - Edit VS Code settings to use it w/ ligatures
   - Set it to Terminal font, to be used by Starship prompt
+
 - Install [anandaroop/dotfiles](https://github.com/anandaroop/dotfiles)
   - run script/setup.sh
     - to link to shared .zshrc and .gitconfig
     - on term init, will complain about some as-yet uninstalled things e.g. asdf
+
 - Install [Homebrew](https://brew.sh) via install script
   - run or refer to script/brew.sh
     - to get all Homebrew goodies
     - incl Starship prompt and many others
+
 - Install 
   - [mise en place](https://mise.jdx.dev)
   <br>—<b>and/or</b>–
@@ -93,6 +107,8 @@ Keep copies of:
       ```
 - Install [pyenv](https://github.com/pyenv/pyenv) for Python
   - see https://github.com/pyenv/pyenv-virtualenv for virtualenv plugin also
+  - And install [pipx](https://pipx.pypa.io/) to install python CLIs with isolation (e.g. `tldr`, `llm`)
+
 - Install Docker via offical dmg
   - And maybe Rosetta 2 for Apple Silicon (see [known issues](https://docs.docker.com/desktop/troubleshoot/known-issues/)) 
 
