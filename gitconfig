@@ -1,4 +1,7 @@
 [alias]
+  # Clone an artsy repo and set up remotes
+  clonea  = "! f() { cd ~/src/artsy && git clone git@github.com:artsy/$1.git && cd $1 && git remote add artsy git@github.com:artsy/$1.git; }; f"
+
   # When pushing to origin for the first time, just create the damn branch already! (Safe to re-run as well)
   pushh = "! f() { CURRENT_BRANCH=$(git branch --show-current); git push --set-upstream origin ${CURRENT_BRANCH}; }; f"
 
