@@ -73,3 +73,6 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 # bun completions
 [ -s "/Users/roop/.bun/_bun" ] && source "/Users/roop/.bun/_bun"
+
+# deno binaries (e.g. vt for val town)
+export PATH="$PATH:/Users/roop/.deno/bin"

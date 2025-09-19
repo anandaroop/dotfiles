@@ -8,6 +8,7 @@ brew install ag
 brew install awscli
 brew install bat
 brew install csvkit
+brew install deno # vt
 brew install detect-secrets
 brew install ffmpeg
 brew install gh
