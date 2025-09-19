@@ -37,50 +37,8 @@ export PATH=~/src/dotfiles/bin:~/bin:$PATH
 ## LANGUAGES ###
 ################
 
-# enable asdf (preferred over chruby and nvm now)
-if [ -d $HOME/.asdf ]; then
-  export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
-  # export ASDF_DATA_DIR=/Users/roop/.asdf
-  # export PATH="$ASDF_DATA_DIR/shims:$PATH"
-
-  # # append completions to fpath
-  # fpath=(/opt/homebrew/share/zsh/site-functions $path)
-  # fpath=(${ASDF_DATA_DIR:-$HOME/.asdf}/completions $fpath)
-  # # initialise completions with ZSH's compinit
-  # autoload -Uz compinit && compinit
-
-  # # configure asdf
-  # . "$HOME/.asdf/asdf.sh"
-  # # append completions to fpath
-  # fpath=(${ASDF_DIR}/completions $fpath)
-  # # initialise completions with ZSH's compinit
-  # autoload -Uz compinit && compinit
-else
-  # enable chruby (if installed via brew install chruby)
-  if [ -d /usr/local/opt/chruby ]; then
-    source /usr/local/opt/chruby/share/chruby/chruby.sh
-    source /usr/local/opt/chruby/share/chruby/auto.sh
-    chruby ruby-2.7.4
-  fi
-
-  # enable nvm (if installed via default curl method)
-  if [ -d $HOME/.nvm ]; then
-    export NVM_DIR="$HOME/.nvm"
-    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-  fi
-fi
-
-# enable pyenv
-# if command -v pyenv 1>/dev/null 2>&1; then
-#   eval "$(pyenv init -)"
-# fi
-
-# pyenv
-# export PYENV_ROOT="$HOME/.pyenv"
-# command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-# eval "$(pyenv init -)"
-# eval "$(pyenv virtualenv-init -)"
+# mise-en-place
+eval "$(mise activate zsh)"
 
 # pyenv 2025
 export PYENV_ROOT="$HOME/.pyenv"
@@ -115,25 +73,3 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 # bun completions
 [ -s "/Users/roop/.bun/_bun" ] && source "/Users/roop/.bun/_bun"
-
-### PYENV ###
-
-# OLD via homebrew
-#
-# # enable pyenv
-# if command -v pyenv 1>/dev/null 2>&1; then
-#   eval "$(pyenv init -)"
-# fi
-#
-# # pyenv
-# export PYENV_ROOT="$HOME/.pyenv"
-# command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-# eval "$(pyenv init -)"
-# eval "$(pyenv virtualenv-init -)"
-
-# NEW see https://artsy.slack.com/archives/CP9P4KR35/p1748964351453869?thread_ts=1748897836.786939&cid=CP9P4KR35
-
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$HOME/.pyenv/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
