@@ -1,6 +1,6 @@
 # run it; or more likely just refer to this and update it
 
-# tricked out zsh prompt
+# tricked out zsh prompt (but prob disable modules: aws, docker_context, git_status, package)
 brew install starship
 
 # dev tools
