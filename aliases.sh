@@ -44,6 +44,9 @@ alias gmerges='git log --merges --invert-grep --grep="Update metaphysics schema"
 alias simpleserver="python -m SimpleHTTPServer"
 alias ss="simpleserver"
 
+# cartography
+alias geomcp="cd ~/src/me/geomcp && foreman run server"
+
 # ruby
 alias bex="bundle exec"
 alias bgu="bundle exec guard"
