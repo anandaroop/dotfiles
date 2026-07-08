@@ -5,14 +5,14 @@ alias k8s="aws-iam-authenticator token -i $(kubectl config get-contexts staging 
 alias k8p="aws-iam-authenticator token -i $(kubectl config get-contexts production --no-headers=true | sed 's/^.*kube/kube/' | awk '{print $1}') -r arn:aws:iam::585031190124:role/KubernetesDev | jq -r .status.token | pbcopy"
 
 # hokusai
-alias hse="hokusai staging env get"
-alias hpe="hokusai production env get"
-alias hsr="hokusai staging run --tty --verbose"
-alias hpr="hokusai production run --tty --verbose"
-alias hsc="hokusai staging run 'bundle exec rails c -- --noautocomplete' --tty --verbose"
-alias hpc="hokusai production run 'bundle exec rails c -- --noautocomplete' --tty --verbose"
-alias hsdb="hokusai staging run 'bundle exec rails dbconsole' --tty --verbose"
-alias hpdb="hokusai production run 'bundle exec rails dbconsole' --tty --verbose"
+alias hse="AWS_PROFILE=developer hokusai staging env get"
+alias hpe="AWS_PROFILE=developer hokusai production env get"
+alias hsr="AWS_PROFILE=developer hokusai staging run --tty --verbose"
+alias hpr="AWS_PROFILE=developer hokusai production run --tty --verbose"
+alias hsc="AWS_PROFILE=developer hokusai staging run 'bundle exec rails c -- --noautocomplete' --tty --verbose"
+alias hpc="AWS_PROFILE=developer hokusai production run 'bundle exec rails c -- --noautocomplete' --tty --verbose"
+alias hsdb="AWS_PROFILE=developer hokusai staging run 'bundle exec rails dbconsole' --tty --verbose"
+alias hpdb="AWS_PROFILE=developer hokusai production run 'bundle exec rails dbconsole' --tty --verbose"
 alias dd2sha="! f() { hokusai registry images --limit 20 --digests --filter-tags prod | grep \$1 | cut -d \| -f 3 | cut -c2-41 }; f"
 
 # projects
