@@ -39,8 +39,6 @@ alias rosalind="cd ~/src/artsy/rosalind"
 alias vibrations="cd ~/src/artsy/vibrations"
 alias volt="cd ~/src/artsy/volt"
 alias vortex="cd ~/src/artsy/vortex"
-alias eigen="cd ~/src/artsy/eigen"
-alias forque="cd ~/src/artsy/forque"
 
 # innies
 alias quantum="cd ~/src/artsy/quantum"
