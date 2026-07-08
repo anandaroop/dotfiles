@@ -40,6 +40,8 @@ alias vibrations="cd ~/src/artsy/vibrations"
 alias volt="cd ~/src/artsy/volt"
 alias vortex="cd ~/src/artsy/vortex"
 
+redshift () { export PGUSER=$(op item get vzyvhsz46bc4tlt5xo7w2ycrvi --fields username) PGPASSWORD=$(op item get vzyvhsz46bc4tlt5xo7w2ycrvi --fields analyst) && psql -h redshift.artsy.net -p 5439 -d snowplow }
+
 # innies
 alias quantum="cd ~/src/artsy/quantum"
 alias qt="quantum"
