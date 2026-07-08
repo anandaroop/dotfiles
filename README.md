@@ -18,11 +18,10 @@ Keep copies of:
   - incl infinite regress of `Old Desktop` folders
 - Usual `~` folders
   - Documents, Music, Pictures, .Movies
-- Tags backup from Typeface app 
+- Tags backup from Typeface app
   - (`~/Library/​Containers/​com.criminalbird.typeface.standalone`)
-- Custom Projections from Avenza 
+- Custom Projections from Avenza
   - (`/Applications/Avenza/MAPublisher XX.Y/MAPublisher Plug-in/Data Source Files`>)
-
 
 ## Basic apps
 
@@ -31,7 +30,7 @@ Keep copies of:
 - Install [1Password](https://1password.com/downloads/mac/) for work creds
   - ~~Add Artsy team from 1Password > Accounts~~
     - ~~Use "Scan setup code" QR from another device to streamline this~~
-  - use "Personal"/"Employee" vault that comes with Artsy team *only* for user-specific work accounts with Artsy-related services, not for personal accounts
+  - use "Personal"/"Employee" vault that comes with Artsy team _only_ for user-specific work accounts with Artsy-related services, not for personal accounts
 - Disable password autofill in
   - Safari > Preferences > Autofill
   - chrome://settings/passwords
@@ -40,7 +39,6 @@ Keep copies of:
 - Install [Lunar](https://lunar.fyi) from website
 - Install [Dropbox](https://www.dropbox.com/install)
   - Add personal account only
-
 
 ## Design environment
 
@@ -55,7 +53,7 @@ Keep copies of:
 ## Dev environment
 
 - Customize Terminal
-  - Text > Font: 120x36 20pt Monaco w 1.15 line spacing****
+  - Text > Font: 120x36 20pt Monaco w 1.15 line spacing
   - Keyboard: Use Option as meta key
   - Window > Resume: No restoring text
   - Shell: Close if clean exit
@@ -68,7 +66,7 @@ Keep copies of:
 - Install VS Code
   - Install `code` shell command from within app
 
-- Set up [Github ssh access](https://help.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh) 
+- Set up [Github ssh access](https://help.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh)
   - with new keypair and copy work keypair from 1password
   - or use keypairs from old machine
 
@@ -79,37 +77,24 @@ Keep copies of:
 - Install [anandaroop/dotfiles](https://github.com/anandaroop/dotfiles)
   - run script/setup.sh
     - to link to shared .zshrc and .gitconfig
-    - on term init, will complain about some as-yet uninstalled things e.g. asdf
+    - on term init, will complain about some as-yet uninstalled things
+
 - Install [Homebrew](https://brew.sh) via install script
   - run or refer to script/brew.sh
     - to get all Homebrew goodies
     - incl Starship prompt and many others
-- Install 
-  - [mise en place](https://mise.jdx.dev)
-  <br>—<b>and/or</b>–
-  - [asdf](https://asdf-vm.com)  and plugins for
-    - [nodejs](https://github.com/asdf-vm/asdf-nodejs)
-      ```sh
-      brew install <find prerequisites on GH plugin page>
-      asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
-      asdf list all nodejs
-      asdf install nodejs 18.15.0 # e.g
-      ```
-    - [ruby](https://github.com/asdf-vm/asdf-ruby)
-      ```sh
-      brew install <find prerequisites on GH plugin page>
-      asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git
-      asdf list all ruby
-      asdf install ruby 3.0.2 # e.g
-      ```
+
+- Install [mise en place](https://mise.jdx.dev)
+
 - Install [pyenv](https://github.com/pyenv/pyenv) for Python
   - see https://github.com/pyenv/pyenv-virtualenv for virtualenv plugin also
   - And install [pipx](https://pipx.pypa.io/) to install python CLIs with isolation (e.g. `tldr`, `llm`)
 
 - Install Docker via offical dmg
-  - And maybe Rosetta 2 for Apple Silicon (see [known issues](https://docs.docker.com/desktop/troubleshoot/known-issues/)) 
+  - And maybe Rosetta 2 for Apple Silicon (see [known issues](https://docs.docker.com/desktop/troubleshoot/known-issues/))
 
 - Install [Hokusai](https://github.com/artsy/hokusai), as of 2025…
+
   ```sh
   brew tap artsy/formulas
   brew install hokusai
