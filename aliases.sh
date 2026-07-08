@@ -67,5 +67,6 @@ alias saydone="osascript -e 'say \"done\"'"
 alias repairmongo="mongod --repair --dbpath /usr/local/var/mongodb"
 alias flushcaches="redis-cli FLUSHALL; echo flush_all | nc localhost 11211"
 alias shuf="ruby -e 'puts STDIN.readlines.shuffle'"
+alias halp="mise exec ruby@3.4.5 -- helpme" # when working in a proj with the wrong ruby version
 alias dhcpbounce="sudo ipconfig set $(networksetup -listallhardwareports | grep Wi-Fi -A1 | tail -1 | cut -c 9-) DHCP"
 alias gs="pushd ~/src/me/good-save"
