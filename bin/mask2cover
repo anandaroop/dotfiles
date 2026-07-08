@@ -1,0 +1,75 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+SRCDIR="/Users/Shared/Geodata/MODIS-VCF/ World MODIS Full Size"
+LAYERS=(tree herb bare)
+
+# --- Validate arguments ---
+if [[ $# -ne 1 ]]; then
+  echo "Usage: mask2cover <mask.tif>" >&2
+  exit 1
+fi
+
+MASK="$1"
+if [[ ! -f "$MASK" ]]; then
+  echo "Error: file not found: $MASK" >&2
+  exit 1
+fi
+
+# --- Check dependencies ---
+for cmd in gdal_translate gdalwarp gdalinfo gdalsrsinfo jq; do
+  if ! command -v "$cmd" &>/dev/null; then
+    echo "Error: $cmd not found" >&2
+    exit 1
+  fi
+done
+
+# --- Temp dir with cleanup trap ---
+TMPDIR="$(mktemp -d)"
+trap 'rm -rf "$TMPDIR"' EXIT
+
+# --- Extract parameters from mask ---
+INFO="$(gdalinfo -json "$MASK")"
+
+# Pixel dimensions
+W="$(echo "$INFO" | jq '.size[0]')"
+H="$(echo "$INFO" | jq '.size[1]')"
+
+# Projected extent (for gdalwarp -te)
+XMIN="$(echo "$INFO" | jq '.cornerCoordinates.upperLeft[0]')"
+YMAX="$(echo "$INFO" | jq '.cornerCoordinates.upperLeft[1]')"
+XMAX="$(echo "$INFO" | jq '.cornerCoordinates.lowerRight[0]')"
+YMIN="$(echo "$INFO" | jq '.cornerCoordinates.lowerRight[1]')"
+
+# WGS84 bounding box with 5-degree buffer (for gdal_translate -projwin)
+BBOX="$(echo "$INFO" | jq '[.wgs84Extent.coordinates[0][][0]] | {minlon: min, maxlon: max}')"
+BBOX2="$(echo "$INFO" | jq '[.wgs84Extent.coordinates[0][][1]] | {minlat: min, maxlat: max}')"
+WEST="$(echo "$BBOX" | jq '.minlon - 5 | if . < -180 then -180 else . end')"
+EAST="$(echo "$BBOX" | jq '.maxlon + 5 | if . > 180 then 180 else . end')"
+SOUTH="$(echo "$BBOX2" | jq '.minlat - 5 | if . < -90 then -90 else . end')"
+NORTH="$(echo "$BBOX2" | jq '.maxlat + 5 | if . > 90 then 90 else . end')"
+
+# CRS
+WKT="$(gdalsrsinfo -o wkt "$MASK")"
+
+# --- Output path ---
+OUTDIR="$(dirname "$MASK")"
+
+# --- Pipeline: process each layer ---
+for layer in "${LAYERS[@]}"; do
+  SRC="$SRCDIR/world.${layer}.tif"
+  OUTPUT="$OUTDIR/${layer}.tif"
+
+  if [[ ! -f "$SRC" ]]; then
+    echo "Error: source not found: $SRC" >&2
+    exit 1
+  fi
+
+  echo "[$layer] Cropping to region of interest..."
+  gdal_translate -projwin "$WEST" "$NORTH" "$EAST" "$SOUTH" "$SRC" "$TMPDIR/cropped.tif"
+
+  echo "[$layer] Warping to target projection and extent..."
+  gdalwarp -t_srs "$WKT" -te "$XMIN" "$YMIN" "$XMAX" "$YMAX" -ts "$W" "$H" -r bilinear -overwrite "$TMPDIR/cropped.tif" "$OUTPUT"
+
+  echo "[$layer] Done: $OUTPUT"
+done

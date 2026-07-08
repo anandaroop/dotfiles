@@ -1,0 +1,68 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+DEM="/Users/Shared/Geodata/srtm30.version2_1.dems/srtm30 world dem.tif"
+
+# --- Validate arguments ---
+if [[ $# -ne 1 ]]; then
+  echo "Usage: mask2topo <mask.tif>" >&2
+  exit 1
+fi
+
+MASK="$1"
+if [[ ! -f "$MASK" ]]; then
+  echo "Error: file not found: $MASK" >&2
+  exit 1
+fi
+
+# --- Check dependencies ---
+for cmd in gdal_translate gdalwarp gdaldem gdalinfo gdalsrsinfo jq; do
+  if ! command -v "$cmd" &>/dev/null; then
+    echo "Error: $cmd not found" >&2
+    exit 1
+  fi
+done
+
+# --- Temp dir with cleanup trap ---
+TMPDIR="$(mktemp -d)"
+trap 'rm -rf "$TMPDIR"' EXIT
+
+# --- Extract parameters from mask ---
+INFO="$(gdalinfo -json "$MASK")"
+
+# Pixel dimensions
+W="$(echo "$INFO" | jq '.size[0]')"
+H="$(echo "$INFO" | jq '.size[1]')"
+
+# Projected extent (for gdalwarp -te)
+XMIN="$(echo "$INFO" | jq '.cornerCoordinates.upperLeft[0]')"
+YMAX="$(echo "$INFO" | jq '.cornerCoordinates.upperLeft[1]')"
+XMAX="$(echo "$INFO" | jq '.cornerCoordinates.lowerRight[0]')"
+YMIN="$(echo "$INFO" | jq '.cornerCoordinates.lowerRight[1]')"
+
+# WGS84 bounding box with 5-degree buffer (for gdal_translate -projwin)
+BBOX="$(echo "$INFO" | jq '[.wgs84Extent.coordinates[0][][0]] | {minlon: min, maxlon: max}')"
+BBOX2="$(echo "$INFO" | jq '[.wgs84Extent.coordinates[0][][1]] | {minlat: min, maxlat: max}')"
+WEST="$(echo "$BBOX" | jq '.minlon - 5 | if . < -180 then -180 else . end')"
+EAST="$(echo "$BBOX" | jq '.maxlon + 5 | if . > 180 then 180 else . end')"
+SOUTH="$(echo "$BBOX2" | jq '.minlat - 5 | if . < -90 then -90 else . end')"
+NORTH="$(echo "$BBOX2" | jq '.maxlat + 5 | if . > 90 then 90 else . end')"
+
+# CRS
+WKT="$(gdalsrsinfo -o wkt "$MASK")"
+
+# --- Output path ---
+OUTDIR="$(dirname "$MASK")"
+OUTPUT="$OUTDIR/hillshade.tif"
+
+# --- Pipeline ---
+echo "Cropping DEM to region of interest..."
+gdal_translate -projwin "$WEST" "$NORTH" "$EAST" "$SOUTH" "$DEM" "$TMPDIR/cropped.tif"
+
+echo "Warping to target projection and extent..."
+gdalwarp -t_srs "$WKT" -te "$XMIN" "$YMIN" "$XMAX" "$YMAX" -ts "$W" "$H" -r bilinear -overwrite "$TMPDIR/cropped.tif" "$TMPDIR/warped.tif"
+
+echo "Generating hillshade..."
+gdaldem hillshade -az 315 -alt 45 -compute_edges "$TMPDIR/warped.tif" "$OUTPUT"
+
+echo "Done: $OUTPUT"
