@@ -46,6 +46,7 @@ alias ss="simpleserver"
 
 # cartography
 alias geomcp="cd ~/src/me/geomcp && foreman run server"
+alias geoclaude="cd ~/src/me/geomcp && claude"
 
 # ruby
 alias bex="bundle exec"
