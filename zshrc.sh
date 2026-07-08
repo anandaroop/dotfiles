@@ -76,3 +76,17 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 # deno binaries (e.g. vt for val town)
 export PATH="$PATH:/Users/roop/.deno/bin"
+
+### PYENV ###
+
+# see https://artsy.slack.com/archives/CP9P4KR35/p1748964351453869?thread_ts=1748897836.786939&cid=CP9P4KR35
+
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$HOME/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/roop/.lmstudio/bin"
+# End of LM Studio CLI section
+
