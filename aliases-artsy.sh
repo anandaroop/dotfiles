@@ -75,12 +75,8 @@ alias fxe2e="cd ~/src/artsy/integrity && git pull artsy main && yarn cypress run
 alias onyxe2e="cd ~/src/artsy/integrity && git pull artsy main && yarn cypress run --spec \"cypress/e2e/onyx/*\""
 alias diamonde2e="cd ~/src/artsy/integrity && git pull artsy main && yarn cypress run --spec \"cypress/e2e/diamond/*\""
 
-# pre m1
-# alias es6up="docker run -it -p 9200:9200 -e http.cors.enabled=true -e http.cors.allow-origin='*' elasticsearch:6.8.23"
-
-# post m1
-alias es6up="docker run -it -p 9200:9200 -e http.cors.enabled=true -e http.cors.allow-origin='*' -e \"discovery.type=single-node\" --platform linux/amd64 elasticsearch:6.8.23"
-alias es7up="docker run -it -p 9200:9200 -v elasticsearch_data:/usr/share/elasticsearch/data -e http.cors.enabled=true -e http.cors.allow-origin='*' -e 'discovery.type=single-node' -e 'xpack.security.enabled=false' elasticsearch:7.17.12"
+# OpenSearch
+alias os2up="docker run -it -p 9200:9200 -v opensearch-data:/usr/share/opensearch/data -e discovery.type=single-node -e bootstrap.memory_lock=true -e DISABLE_INSTALL_DEMO_CONFIG=true -e DISABLE_SECURITY_PLUGIN=true opensearchproject/opensearch:2.17.0"
 
 alias observe="cd ~/src/me/observe-artsy && code . && yarn dev && op signin"
 alias userid="op item get 'Artsy (old gmail login)' --fields 'username,Gravity User ID' && op item get 'Artsy (roop@)' --fields 'username,Gravity User ID'"
