@@ -91,6 +91,9 @@ alias vlt="/Users/roop/src/artsy/vlt/bin/vlt"
 alias vaultz="vlt"
 alias self-review="/Users/roop/src/artsy/self-review/bin/self-review"
 
+# miscellaneous
+ld () { http get https://www.artsy.net/$@ | htmlq --text 'script[type="application/ld+json"]' | jq }
+
 repos-busiest () {
   local time_ago=${1:-1w} # y|m|w|d|H|M|S
   repos-pulls ${time_ago} | tee "tmp-repos-busiest" >&2
