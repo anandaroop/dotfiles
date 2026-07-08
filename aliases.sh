@@ -70,3 +70,9 @@ alias shuf="ruby -e 'puts STDIN.readlines.shuffle'"
 alias halp="mise exec ruby@3.4.5 -- helpme" # when working in a proj with the wrong ruby version
 alias dhcpbounce="sudo ipconfig set $(networksetup -listallhardwareports | grep Wi-Fi -A1 | tail -1 | cut -c 9-) DHCP"
 alias gs="pushd ~/src/me/good-save"
+alias traceclaude="CLAUDE_CODE_ENABLE_TELEMETRY=1 CLAUDE_CODE_ENHANCED_TELEMETRY_BETA=1 OTEL_METRICS_EXPORTER=console OTEL_TRACES_EXPORTER=console OTEL_LOGS_EXPORTER=console OTEL_LOG_RAW_API_BODIES=1 OTEL_METRIC_EXPORT_INTERVAL=1000 OTEL_LOGS_EXPORT_INTERVAL=1000 OTEL_TRACES_EXPORT_INTERVAL=1000 claude -p"
+
+# vibe coding
+# alias yolo="test -f ./.tool-versions && osascript -e 'tell application \"Terminal\" to set current settings of front window to settings set \"Vibe\"' && vibe --send \"claude --dangerously-skip-permissions\" || echo \"Vibe not available. Try:\n\necho 'github:lynaghk/vibe latest' >> .tool-versions\""
+alias yolo="cd ~/src/yolo && osascript -e 'tell application \"Terminal\" to set current settings of front window to settings set \"Vibe\"' && vibe --send /root/startup-script.sh"
+alias unyolo="osascript -e 'tell application \"Terminal\" to set current settings of front window to settings set \"Roop Dark\"'"
