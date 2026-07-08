@@ -37,7 +37,7 @@ alias gstale='git stale'
 alias gwho="git who"
 alias gwhat='git what'
 alias gwhen='git when'
-alias glog='git log --graph --pretty="%C(yellow)%h %C(red)%cd %Creset%s %C(green)%an%C(cyan)%d" --date=relative'
+alias glog='git log --graph --pretty="%C(yellow)%h %C(red)%cd %Creset%s %C(green)%an %C(cyan)%D" --date=relative'
 alias gtag='git log --pretty="%C(yellow)%h %Creset%s%C(green)%d"'
 alias gmerges='git log --merges --invert-grep --grep="Update metaphysics schema" --pretty="%h %C(blue)%ci %C(red)%s"'
 gclone () { git clone git@github.com:artsy/$1.git; }
